@@ -140,7 +140,7 @@ body {
 } */
 
 a {
-  color: #004d40;
+  color: #c64343;
 }
 
 /* main blockqoute */
@@ -237,7 +237,7 @@ ul.side-nav li {
 
 ul.side-nav.fixed a {
   box-sizing: content-box;
-  color: rgb(16, 202, 56);
+  color: #c64343;
   display: block;
   line-height: 100%;
   padding: 10px 0 12px;
@@ -553,7 +553,7 @@ small {
 /* main .teal-text */
 
 .teal-text {
-  color: #008073 !important;
+  color: #c64343 !important;
 }
 
 .teal-text {
@@ -607,7 +607,7 @@ small {
     position: absolute;
   }
   nav a.button-collapse, nav a.button-collapse i {
-    color: #009688;
+    color: #c64343;
     height: 56px;
     line-height: 56px;
   }

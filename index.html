@@ -1,1018 +1,1127 @@
-<!-- <!DOCTYPE html> -->
-<html lang="en">
-
+<!doctype html>
+<html lang="en" data-theme="whiteboard">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width initial-scale=1" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mukul Shingwani, Senior Data Scientist</title>
+<meta name="description" content="Mukul Shingwani, AI engineer and Senior Data Scientist at noon. The journey from first model to production platforms, kept as a lab notebook.">
+<meta property="og:title" content="Mukul Shingwani, Senior Data Scientist">
+<meta property="og:description" content="AI engineer and Senior Data Scientist at noon: recommendations, GenAI, multi-agent systems and address intelligence.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Cpath d=%22M6 26 L22 6 L27 11 L11 30 Z%22 fill=%22%23FFEC99%22 stroke=%22%231E1E1E%22 stroke-width=%222.2%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M6 26 L4 31 L11 30%22 fill=%22%231E1E1E%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Caveat:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
 
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-PGZH8HT');</script>
-  <!-- End Google Tag Manager -->
+/* ================= Themes ================= */
+:root,[data-theme="whiteboard"]{
+  --bg:#F8FAFB; --grid:#E4ECF3; --grid2:#CEDBE7; --margin:#E58C86; --ink:#18202C; --ink-2:#4C5866; --paper:#FFFFFF;
+  --blue:#1F3FB8; --red:#C42F28; --green:#1E7044; --violet:#5B3FC4; --orange:#B04E0E;
+  --hl:#FFE45C; --tb-on:#E9EEFF;
+  --n-yellow:#FFF6CC; --n-blue:#E5EEFF; --n-green:#E1F4E7; --n-pink:#FCE6EE; --n-violet:#EDE7FF; --n-orange:#FFEDDA;
+  --tape:rgba(255,255,255,.7); --shadow:rgba(24,32,44,.10); --grain:.04;
+  --chip-on-bg:#18202C; --chip-on-ink:#FFFFFF; --focus:#1F3FB8;
+}
+[data-theme="blueprint"]{
+  --bg:#0F3B78; --grid:#1B4A8A; --grid2:#285CA2; --margin:rgba(255,255,255,.35); --ink:#F1F6FF; --ink-2:#B9CDEB; --paper:#154888;
+  --blue:#8CC8FF; --red:#FFA094; --green:#92E6A8; --violet:#C2AEFF; --orange:#FFC489;
+  --hl:rgba(255,255,255,.18); --tb-on:rgba(255,255,255,.16);
+  --n-yellow:#1F5AA6; --n-blue:#164080; --n-green:#17577F; --n-pink:#2B4A96; --n-violet:#223F8A; --n-orange:#1D5292;
+  --tape:rgba(255,255,255,.18); --shadow:rgba(0,0,0,.25); --grain:.06;
+  --chip-on-bg:#F1F6FF; --chip-on-ink:#0F3B78; --focus:#FFD43B;
+}
+[data-theme="midnight"]{
+  --bg:#121419; --grid:#1B1F26; --grid2:#252A33; --margin:rgba(255,143,143,.32); --ink:#ECE9E2; --ink-2:#A6ABB4; --paper:#1B1E24;
+  --blue:#8AB4FF; --red:#FF8F8F; --green:#86DFA0; --violet:#C3A6FF; --orange:#FFB46B;
+  --hl:rgba(138,180,255,.20); --tb-on:rgba(255,255,255,.10);
+  --n-yellow:#24283A; --n-blue:#1C2638; --n-green:#1C2B2E; --n-pink:#2D2231; --n-violet:#262340; --n-orange:#2D2530;
+  --tape:rgba(255,255,255,.10); --shadow:rgba(0,0,0,.45); --grain:.06;
+  --chip-on-bg:#ECE9E2; --chip-on-ink:#121419; --focus:#8AB4FF;
+}
 
-  <!-- Materialize - Compiled and minified CSS-->
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css" />
-  <!-- Font Awesome Icon - CSS-->
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
-  <!-- Custom Styles-->
-  <link rel="stylesheet" href="/assets/css/style.css" />
-  <title>Mukul Shingwani</title>
+*{box-sizing:border-box}
+:root{--mx:calc(50vw - 576px)}
+@media (max-width:1239px){ html[data-theme]{--margin:transparent} }
+html{-webkit-text-size-adjust:100%; overflow-x:clip}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{
+  margin:0; background-color:var(--bg); color:var(--ink);
+  font-family:"Geist",system-ui,sans-serif; font-size:17px; line-height:1.55; letter-spacing:-.005em;
+  background-image:linear-gradient(90deg,transparent calc(var(--mx) - 1.5px),var(--margin) 0 var(--mx),transparent 0 calc(var(--mx) + 4px),var(--margin) 0 calc(var(--mx) + 5.5px),transparent 0),linear-gradient(var(--grid2) 1px, transparent 1px),linear-gradient(90deg,var(--grid2) 1px, transparent 1px),linear-gradient(var(--grid) 1px, transparent 1px),linear-gradient(90deg,var(--grid) 1px, transparent 1px); background-size:100% 100%,120px 120px,120px 120px,24px 24px,24px 24px; background-attachment:fixed;
+  transition:background-color .5s ease, color .5s ease; overflow-x:clip;
+}
+body::after{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:80; opacity:var(--grain);
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+a{color:inherit} button{font:inherit; color:inherit}
+:focus-visible{outline:3px solid var(--focus); outline-offset:4px; border-radius:6px}
+.hand{font-family:"Caveat",cursive; font-weight:600; letter-spacing:0}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace; letter-spacing:0}
+.sr{position:absolute!important; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+.wrap{max-width:1180px; margin:0 auto; padding:0 16px; position:relative}
+@media (min-width:760px){ .wrap{padding:0 48px} }
+html.cursor-on, html.cursor-on *{cursor:none!important}
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126939217-2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+/* Rough layer */
+[data-rough]{position:relative}
+svg.rl{position:absolute; pointer-events:none; overflow:visible; z-index:0}
+[data-rough] > :not(svg.rl){position:relative; z-index:1}
+svg.ic{display:block; overflow:visible}
 
-    gtag('config', 'UA-126939217-2');
-  </script>
+/* Line reveal */
+.ln{display:block; overflow:hidden; padding-bottom:.06em; margin-bottom:-.06em}
+.ln > span{display:block; will-change:transform}
 
-  <!-- Open Graph-->
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Mukul Shingwani" />
-  <meta property="og:description" content="Pre-final year Student at IIT Jodhpur" />
-  <meta property="og:url" content="https://mukulshingwani.github.io/" />
-  <meta property="og:site_name" content="Mukul Shingwani" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Coder | Technofreak | Explorer | Minimalist | Humane" />
-  <meta name="twitter:description" content="Software Developer" />
-  <meta name="author" content="Mukul shingwani" />
-  <!-- <meta name="description" content="Software Developer with a passion for backend development and artificial intelligence." /> -->
-  <link rel="apple-touch-icon" sizes="57x57" href="/assets/img/favicon/apple-icon-57x57.png" />
-  <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/favicon/apple-icon-60x60.png" />
-  <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-icon-72x72.png" />
-  <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicon/apple-icon-76x76.png" />
-  <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-icon-114x114.png" />
-  <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/favicon/apple-icon-120x120.png" />
-  <link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicon/apple-icon-144x144.png" />
-  <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicon/apple-icon-152x152.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon/apple-icon-180x180.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon/android-icon-192x192.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicon/favicon-96x96.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/favicon-16x16.png" /> 
-  <link rel="manifest" href="/assets/img/favicon/manifest.json" />
-  <meta name="msapplication-TileColor" content="#ffffff" />
-  <meta name="msapplication-TileImage" content="/assets/img/favicon/ms-icon-144x144.png" />
-  <meta name="theme-color" content="#ffffff" />
-  <meta name="robots" content="index, follow" />
-  <!-- Google Site Verification for indexing -->
-  <meta name="google-site-verification" content="_qxK8tePiU2fhnwlwnJ7pkDFnj1k2EiKq_cYGy1Cb84" />
+/* ================= Toolbar ================= */
+.toolbar{position:fixed; z-index:50; left:50%; transform:translateX(-50%); top:14px; display:flex; align-items:center; gap:2px; padding:6px 8px; background:var(--paper); border-radius:12px; box-shadow:0 2px 14px var(--shadow); max-width:calc(100vw - 20px)}
+@media (max-width:759px){ .toolbar{top:auto; bottom:12px; gap:0; padding:5px 6px} }
+.tb-btn{min-width:44px; height:44px; border:none; background:transparent; border-radius:9px; display:inline-flex; align-items:center; justify-content:center; padding:0 10px; color:var(--ink); text-decoration:none; font-size:18px; white-space:nowrap; cursor:pointer}
+.tb-btn:hover,.tb-btn[aria-pressed="true"]{background:var(--tb-on)}
+.tb-sep{width:1.5px; height:26px; background:var(--grid); margin:0 4px; flex:none}
+.swatch{width:22px; height:22px; border-radius:50%; border:2px solid var(--ink); display:block}
+.tb-nav{display:flex}
+.tb-link{font-size:15px; font-weight:500}
+@media (max-width:759px){ .tb-hide-sm,#penBtn,#penSep{display:none} .tb-btn{min-width:36px; padding:0 5px} .tb-nav .tb-btn{font-size:16px; padding:0 6px} }
+
+/* ================= Progress rail ================= */
+.rail{position:fixed; left:26px; top:22vh; height:56vh; width:44px; z-index:40; display:none}
+@media (min-width:1440px){ .rail{display:block} }
+.rail svg{position:absolute; left:0; top:0; width:44px; height:100%; overflow:visible}
+.rail ol{list-style:none; margin:0; padding:0}
+.mark{position:absolute; left:10px; width:24px; height:24px; transform:translateY(-50%); border:none; background:transparent; padding:0; cursor:pointer}
+.mark i{position:absolute; left:6px; top:6px; width:12px; height:12px; border-radius:50%; border:2px solid var(--ink-2); background:var(--bg); transition:background .3s, border-color .3s, transform .3s}
+.mark.on i{background:var(--blue); border-color:var(--blue); transform:scale(1.15)}
+.mark span{position:absolute; left:34px; top:50%; transform:translateY(-50%) translateX(-6px); white-space:nowrap; font-family:"Caveat",cursive; font-weight:600; font-size:20px; opacity:0; pointer-events:none; transition:opacity .3s, transform .3s}
+.mark:hover span,.mark:focus-visible span,.mark.on span{opacity:1; transform:translateY(-50%)}
+.mark.on span{color:var(--blue)}
+
+/* ================= Cursor ================= */
+.cur-ring{opacity:0; transition:opacity .4s; position:fixed; left:0; top:0; width:64px; height:64px; margin:-32px 0 0 -32px; border:1.5px solid var(--ink); border-radius:50%; pointer-events:none; z-index:90; display:none; align-items:center; justify-content:center; transform:scale(.5)}
+.cur-ring span{position:absolute; top:calc(100% + 6px); white-space:nowrap; font-family:"Caveat",cursive; font-weight:600; font-size:19px; opacity:0; transition:opacity .25s}
+.cur-ring.big{background:transparent; border-width:2px; border-color:var(--blue)}
+.cur-ring.big span{opacity:1}
+.cur-dot{opacity:0; transition:opacity .4s; position:fixed; left:0; top:0; width:6px; height:6px; margin:-3px 0 0 -3px; background:var(--ink); border-radius:50%; pointer-events:none; z-index:91; display:none}
+html.cursor-on .cur-ring{display:flex} html.cursor-on .cur-dot{display:block}
+html.cursor-live .cur-ring,html.cursor-live .cur-dot{opacity:1}
+#trail{position:fixed; inset:0; pointer-events:none; z-index:60}
+
+/* ================= Hero ================= */
+.hero{height:100vh; min-height:620px; position:relative; overflow:hidden}
+.layer{position:absolute; inset:0; pointer-events:none}
+.layer-back svg{position:absolute; overflow:visible}
+.float{position:absolute; will-change:transform}
+.hero-front{position:absolute; inset:0; display:grid; align-content:center; padding:96px 0 70px}
+.title-page{position:relative; width:min(1000px, calc(100% - 32px)); margin:0 auto}
+@media (min-width:760px){ .title-page{width:min(1000px, calc(100% - 96px))} }
+.tp-head{font-size:13px; color:var(--ink-2); margin:0 0 18px; display:flex; gap:12px; align-items:center}
+.tp-head span{border:1.5px solid var(--ink-2); padding:2px 8px; border-radius:4px}
+.field{display:grid; gap:0; border-bottom:1.5px solid var(--grid2); padding:10px 0 8px}
+.f-label{font-size:12px; color:var(--ink-2)}
+.f-val{font-family:"Caveat",cursive; font-weight:600; font-size:clamp(25px,2.6vw,33px); color:var(--blue); line-height:1.2; clip-path:inset(0 0 0 0)}
+.field-row{display:grid}
+@media (min-width:760px){ .field-row{grid-template-columns:1.5fr 1fr 1fr; column-gap:28px} }
+.stamp-big{position:absolute; right:0; top:-8px; font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--green); border:2.5px solid currentColor; outline:1px solid currentColor; outline-offset:3px; border-radius:4px; padding:8px 12px; transform:rotate(-8deg)}
+@media (max-width:759px){ .stamp-big{position:relative; display:inline-block; top:auto; margin-top:22px} }
+.name-svg{width:min(100%,860px); height:auto; overflow:visible; display:block; margin-top:-6px}
+.name-svg text{font-family:"Caveat",cursive; font-weight:600; font-size:180px; fill:var(--ink); fill-opacity:0; stroke:var(--ink); stroke-width:1.6; stroke-dasharray:2000; stroke-dashoffset:2000; stroke-linejoin:round}
+.hero-lede{font-size:clamp(19px,2vw,23px); max-width:46ch; margin:4px 0 2px; color:var(--ink); clip-path:inset(0 0 0 0)}
+.hero-cue{position:absolute; left:50%; bottom:28px; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:4px; color:var(--ink-2); font-size:22px}
+.hero-cue svg{width:22px; height:36px; overflow:visible}
+.cue-in{display:flex; flex-direction:column; align-items:center; gap:4px}
+@media (prefers-reduced-motion:no-preference){ .hero-cue svg{animation:bob 2.2s ease-in-out infinite} }
+@keyframes bob{50%{transform:translateY(7px)}}
+@media (max-width:759px){ .hero-cue{display:none} .stamp-big{position:absolute!important; top:-46px!important; right:0; margin:0!important; font-size:10px; padding:5px 8px} .hero-proof{font-size:21px} }
+
+/* ================= Big type ================= */
+.display{font-family:"Geist",sans-serif; font-weight:500; letter-spacing:-.045em; line-height:.96; margin:0}
+.h-xl{font-size:clamp(46px,7.4vw,112px)}
+.h-lg{font-size:clamp(40px,5.6vw,80px)}
+.aside{font-family:"Caveat",cursive; font-weight:600; color:var(--red); font-size:25px; line-height:1.25; display:inline-flex; gap:8px; align-items:flex-start; transform:rotate(-3deg)}
+.aside svg{width:44px; height:34px; flex:none; overflow:visible}
+
+/* ================= Loop beat ================= */
+#loop{box-shadow:0 -1px 0 var(--grid2),0 -30px 40px -24px var(--shadow); position:relative; z-index:2; background-color:var(--bg); background-image:linear-gradient(90deg,transparent calc(var(--mx) - 1.5px),var(--margin) 0 var(--mx),transparent 0 calc(var(--mx) + 4px),var(--margin) 0 calc(var(--mx) + 5.5px),transparent 0),linear-gradient(var(--grid2) 1px, transparent 1px),linear-gradient(90deg,var(--grid2) 1px, transparent 1px),linear-gradient(var(--grid) 1px, transparent 1px),linear-gradient(90deg,var(--grid) 1px, transparent 1px); background-size:100% 100%,120px 120px,120px 120px,24px 24px,24px 24px; background-attachment:fixed; transition:background-color .5s ease}
+.loop-stage{min-height:100vh; display:grid; align-content:center; padding:80px 0}
+.loop-stage > .wrap,.scope-stage > .wrap{width:100%}
+.loop-grid{display:grid; gap:36px; align-items:center}
+@media (min-width:980px){ .loop-grid{grid-template-columns:.9fr 1.1fr; gap:56px} }
+.loop-copy p{font-size:clamp(18px,1.8vw,21px); color:var(--ink-2); max-width:38ch; margin:22px 0 18px}
+.loop-fig{margin:0}
+.loop-fig figcaption{font-size:12px; color:var(--ink-2); margin:0 0 14px; max-width:600px; margin-inline:auto}
+.loop-svg{width:100%; max-width:600px; height:auto; display:block; margin:0 auto; overflow:visible}
+.loop-svg text{font-family:"Caveat",cursive; font-weight:600; fill:var(--ink)}
+
+/* ================= Chapters ================= */
+.chapter{position:relative}
+.ch-stage{height:100vh; position:relative; overflow:hidden; z-index:2}
+.ch-card{position:absolute; inset:0; background-color:var(--card); background-image:linear-gradient(var(--grid2) 1px, transparent 1px),linear-gradient(90deg,var(--grid2) 1px, transparent 1px),linear-gradient(var(--grid) 1px, transparent 1px),linear-gradient(90deg,var(--grid) 1px, transparent 1px); background-size:120px 120px,120px 120px,24px 24px,24px 24px; transform-origin:50% 50%; will-change:clip-path,transform}
+.ch-frame{position:absolute; inset:22px}
+@media (min-width:760px){ .ch-frame{inset:34px} }
+.ch-inner{position:absolute; inset:0; display:grid; align-content:center; gap:20px; padding:80px 36px 90px}
+@media (min-width:900px){ .ch-inner{grid-template-columns:1fr 1fr; align-items:center; padding:60px 9vw} }
+.ch-num{font-size:clamp(76px,9vw,132px); line-height:1; color:var(--blue)}
+.ch-up{font-family:"Caveat",cursive; font-weight:600; color:var(--red); font-size:27px; display:inline-flex; align-items:center; gap:6px; margin-left:14px; vertical-align:middle; transform:rotate(-6deg)}
+.ch-up svg{width:42px; height:28px; overflow:visible}
+.ch-when{margin:10px 0 12px; color:var(--ink-2); font-size:17px}
+.ch-title{font-size:clamp(44px,6.4vw,96px)}
+.ch-line{font-size:clamp(18px,1.9vw,23px); max-width:30ch; margin:18px 0 0}
+.ch-scene{position:relative; align-self:center}
+.ch-sum{margin:0; border-top:1.5px solid var(--ink); max-width:440px}
+.ch-sum div{display:flex; justify-content:space-between; align-items:baseline; gap:16px; border-bottom:1.5px solid var(--grid2); padding:12px 0}
+.ch-sum dt{font-size:12px; color:var(--ink-2)}
+.ch-sum dd{line-height:1.1; margin:0; font-size:clamp(28px,3vw,40px); color:var(--blue); text-align:right}
+.ch-scene .float{transform:translate(-50%,-50%)}
+
+
+.ch-notes{position:relative; padding:110px 0 120px}
+.spine{position:absolute; top:60px; left:2px; width:40px; height:calc(100% - 120px); pointer-events:none; overflow:visible; z-index:0}
+@media (min-width:900px){ .spine{left:calc(50% - 20px)} }
+.notes{list-style:none; margin:0; padding:0 0 0 44px; display:grid; gap:36px; position:relative; z-index:2}
+@media (min-width:900px){ .notes{grid-template-columns:1fr 1fr; column-gap:160px; row-gap:56px; padding:0} .notes > li:nth-child(even){margin-top:120px} }
+.notes > li{rotate:0deg}
+.notes > li.hidden{display:none}
+.note{all:unset; box-sizing:border-box; display:block; width:100%; position:relative; cursor:pointer; transform-style:preserve-3d}
+.note:focus-visible{outline:3px solid var(--focus); outline-offset:10px; border-radius:6px}
+.note-inner{display:grid; transition:transform .9s cubic-bezier(.25,1.2,.45,1); transform-style:preserve-3d}
+.note.flipped .note-inner{transform:rotateY(180deg)}
+.face{grid-area:1/1; padding:28px 26px 22px; backface-visibility:hidden; -webkit-backface-visibility:hidden; min-height:240px; display:flex; flex-direction:column; filter:drop-shadow(0 10px 18px var(--shadow))}
+.face.back{transform:rotateY(180deg)}
+.face.front::before,.face.back::before{content:""; position:absolute; inset:0 auto 0 0; width:5px; background:var(--area); z-index:2}
+.tape{display:none; position:absolute; top:-12px; left:50%; width:96px; height:26px; transform:translateX(-50%) rotate(-3deg) translateZ(1px); background:var(--tape); border:1px dashed var(--grid); z-index:3; pointer-events:none}
+.n-when{display:block; font-size:14px; color:var(--ink-2); margin:0 0 6px}
+.n-title{display:block; font-family:"Geist",sans-serif; font-weight:600; font-size:22px; letter-spacing:-.02em; line-height:1.2; margin:0 0 10px}
+.n-code{display:block; font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-2); margin:0 0 10px}
+.n-label{display:block; font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-2); margin-top:auto}
+.n-what{display:block; font-size:16px; margin:0 0 14px}
+.n-out{display:block; font-family:"Caveat",cursive; font-weight:600; font-size:26px; color:var(--blue); line-height:1.15}
+.n-foot{display:flex; justify-content:space-between; align-items:flex-end; gap:10px; margin-top:12px}
+.flip-hint{font-size:14px; color:var(--ink-2); display:inline-flex; gap:6px; align-items:center}
+.flip-hint svg{width:22px; height:18px; overflow:visible}
+.stamp{font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:12px; letter-spacing:.14em; text-transform:uppercase; padding:5px 10px; border:2px solid currentColor; border-radius:3px; outline:1px solid currentColor; outline-offset:2px; transform:rotate(-7deg); white-space:nowrap; display:inline-block; opacity:.92}
+.stamp.built{color:var(--blue)}
+.stamp.live{color:var(--green)} .stamp.wip{color:var(--orange)}
+.b-h{display:block; font-family:"Caveat",cursive; font-weight:600; font-size:30px; color:var(--blue); margin:0 0 8px}
+.b-p{display:block; margin:0 0 12px; font-size:16px}
+.b-tag{display:block; font-size:14px; color:var(--ink-2); margin-top:10px}
+
+/* Filters */
+.filter-bar{padding:110px 0 0}
+.filters{display:flex; flex-wrap:wrap; gap:10px; margin:22px 0 0}
+.chip{border:none; background:transparent; padding:8px 16px; min-height:44px; font-family:"Geist",sans-serif; font-weight:500; font-size:15px; cursor:pointer}
+.chip[aria-pressed="true"]{color:var(--chip-on-ink)}
+.chip small{font-family:"Geist",sans-serif; font-size:13px; margin-left:6px; opacity:.7}
+.ch-notes.empty{display:none}
+.skip:focus{position:fixed!important; left:16px; top:16px; width:auto; height:auto; clip:auto; z-index:100; background:var(--paper); padding:10px 14px; border-radius:8px}
+.hero-proof{font-family:"Caveat",cursive; font-weight:600; font-size:clamp(23px,2.2vw,28px); color:var(--red); margin:18px 0 0; display:flex; gap:10px; align-items:center; transform:rotate(-1.5deg); transform-origin:left}
+.hero-proof svg{width:40px; height:26px; flex:none; overflow:visible}
+.chip .dot{display:inline-block; width:12px; height:12px; border-radius:50%; margin-right:8px; border:1.5px solid currentColor; vertical-align:-1px}
+
+/* ================= Sections ================= */
+.sec{padding:140px 0 0; position:relative}
+.sec-head{display:grid; gap:18px; margin:0 0 44px}
+@media (min-width:900px){ .sec-head{grid-template-columns:1fr auto; align-items:end} }
+.sec-head p{color:var(--ink-2); margin:0; max-width:52ch; font-size:18px}
+
+.chart-card{padding:30px 24px 24px; max-width:1000px}
+.chart-top{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:baseline; margin-bottom:6px}
+.chart-top h3{font-family:"Geist",sans-serif; font-weight:600; font-size:17px; margin:0}
+.chart-top h3 .mono{color:var(--ink-2); font-weight:500; margin-right:8px}
+.linkbtn{background:none; border:none; padding:10px 0; color:var(--blue); text-decoration:underline; text-underline-offset:4px; font-size:15px; font-weight:500; min-height:44px; cursor:pointer}
+#liftSvg{width:100%; height:auto; display:block; overflow:visible}
+#liftSvg text{fill:var(--ink)}
+#liftSvg .hit{transition:fill .25s}
+#liftSvg g[role=link]:hover .hit,#liftSvg g[role=link]:focus-visible .hit{fill:var(--hl); fill-opacity:.35}
+.chart-note{color:var(--ink-2); font-size:15px; margin:10px 0 0}
+table.alt{width:100%; border-collapse:collapse; font-size:16px}
+table.alt th,table.alt td{text-align:left; padding:8px 4px; border-bottom:1.5px dashed var(--grid)}
+table.alt td:last-child,table.alt th:last-child{text-align:right}
+
+.scope-stage{min-height:100vh; display:grid; align-content:center; padding:40px 0}
+.scope-grid{display:grid; gap:22px}
+@media (min-width:900px){ .scope-grid{grid-template-columns:320px 1fr; align-items:center; gap:40px} }
+.year-big{font-family:"Caveat",cursive; font-weight:600; color:var(--blue); font-size:clamp(90px,11vw,150px); line-height:1; margin:0}
+.year-cap{font-size:19px; max-width:28ch; margin:6px 0 18px; min-height:3.1em}
+.years{display:flex; gap:8px}
+.yr{border:none; background:transparent; padding:8px 14px; min-height:44px; font-family:"IBM Plex Mono",monospace; font-size:15px; cursor:pointer}
+.yr[aria-pressed="true"]{color:var(--chip-on-ink)}
+.bubbles{position:relative; height:min(460px,56vh)}
+.bub{position:absolute; transform:translate(-50%,-50%); width:200px; min-height:98px; display:flex; align-items:center; justify-content:center; text-align:center; padding:14px 18px}
+.bub b{font-family:"Geist",sans-serif; font-weight:600; font-size:16px; letter-spacing:-.01em; line-height:1.25}
+.bub i{font-style:normal; font-size:14px; color:var(--ink-2)}
+.bub.none b{color:var(--ink-2)}
+@media (max-width:1179px){ .bubbles{height:auto; display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:22px 18px; padding:0 10px} .bub{position:relative; transform:none; left:auto!important; top:auto!important; width:auto} }
+
+.marquee{overflow:hidden; padding:22px 0; -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.track{display:flex; gap:18px; width:max-content; padding:0 12px; will-change:transform}
+.pill{padding:9px 16px; font-family:"IBM Plex Mono",monospace; font-size:14px; white-space:nowrap}
+html.rm .track{flex-wrap:wrap; width:auto} html.rm .track .dup{display:none}
+
+.contact{padding:200px 0 150px; position:relative}
+.contact .display{max-width:12ch; position:relative; z-index:1}
+.plane-path{position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible}
+.plane{position:absolute; left:0; top:0; width:58px; height:42px; pointer-events:none; offset-rotate:auto; z-index:2}
+.hello-copy{font-size:clamp(18px,1.8vw,21px); color:var(--ink-2); max-width:44ch; margin:28px 0 0; position:relative; z-index:1}
+.hello-copy a{color:var(--ink); text-underline-offset:4px}
+.actions{display:flex; flex-wrap:wrap; gap:18px; margin-top:32px; position:relative; z-index:1}
+.rbtn{display:inline-flex; align-items:center; min-height:54px; padding:12px 28px; text-decoration:none; font-family:"Geist",sans-serif; font-weight:600; font-size:17px; cursor:pointer; will-change:transform}
+.sign{margin-top:64px; max-width:900px; position:relative; z-index:1}
+footer{color:var(--ink-2); font-size:15px; padding:0 0 120px}
+@media (min-width:760px){ footer{padding-bottom:48px} }
+
+/* Reduced motion */
+html.rm .name-svg text{fill-opacity:1; stroke-width:0; stroke-dasharray:none}
+html.rm .ch-stage{height:auto; min-height:90vh}
+html.rm .ch-inner{position:relative}
+html.rm .note-inner{transition:none}
+</style>
 </head>
-
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGZH8HT"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
-  
-  <!-- Navigation Menu-->
-  <!-- Nav class 1 -->
-  <nav class="hide-on-small-only">
-    <ul class="side-nav fixed section table-of-contents">
+<a class="sr skip" href="#loop">Skip to content</a>
+<canvas id="trail" aria-hidden="true"></canvas>
+<div class="cur-ring" aria-hidden="true"><span id="curLabel"></span></div>
+<div class="cur-dot" aria-hidden="true"></div>
 
-      <li class="logo">
-        <a id="logo-container" aria-label="Navigate to the beginning of the page" href="#intro"
-          class="brand-logo grey-blue-text">
-          <img src="assets\img\pic31.jpg" class="circle img-responsive profile-pic" alt="avatar">
-        </a>
-      </li>
+<nav class="toolbar" aria-label="Toolbar" data-rough="rect" data-sw="1.3" data-rgh="1.1">
+  <button class="tb-btn" id="penBtn" aria-pressed="false" aria-label="Ink trail on cursor" title="Ink trail">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1-4L16 5l3 3L8 19z"/><path d="M14 7l3 3"/></svg>
+  </button>
+  <span class="tb-sep" aria-hidden="true" id="penSep"></span>
+  <button class="tb-btn" data-theme-btn="whiteboard" aria-label="Notebook theme" title="Notebook"><span class="swatch" style="background:#F7F8FA"></span></button>
+  <button class="tb-btn" data-theme-btn="blueprint" aria-label="Blueprint theme" title="Blueprint"><span class="swatch" style="background:#113A72"></span></button>
+  <button class="tb-btn" data-theme-btn="midnight" aria-label="Midnight theme" title="Midnight"><span class="swatch" style="background:#15171C"></span></button>
+  <span class="tb-sep" aria-hidden="true"></span>
+  <div class="tb-nav">
+    <a class="tb-btn tb-link" href="#journey" data-go>Journey</a>
+    <a class="tb-btn tb-link" href="#impact" data-go>Impact</a>
+    <a class="tb-btn tb-link tb-hide-sm" href="#scope" data-go>Scope</a>
+    <a class="tb-btn tb-link" href="#hello" data-go>Say hi</a>
+  </div>
+</nav>
 
-      <li class="bold">
-        <a aria-label="Navigate to the About section" href="#about" class="waves-effect waves-dark teal-text"><i
-            class="mdi-social-person small"></i><span>About</span></a>
-      </li>
-      <!-- <li class="bold">
-        <a aria-label="Navigate to the Experience section" href="#experience"
-          class="waves-effect waves-dark teal-text"><i
-            class="mdi-action-trending-up small"></i><span>Experience</span></a>
-      </li> -->
+<nav class="rail" aria-label="Page progress">
+  <svg id="railSvg" aria-hidden="true"></svg>
+  <ol id="railMarks"></ol>
+</nav>
 
-      <li class="bold">
-        <!-- mdi-av-web small
-             mdi-av-my-library-books small-->
-        <a aria-label="Navigate to the Projects section" href="#projects" class="waves-effect waves-dark teal-text"><i
-            class="mdi-av-my-library-books small"></i><span>Projects</span></a>
-      </li>
-
-      <li class="bold">
-        <!--
-        ICONS:
-        mdi-action-assessment
-        mdi-social-poll
-        mdi-av-equalizer
-        -->
-        <a aria-label="Navigate to the Skills section" href="#skills" class="waves-effect waves-dark teal-text"><i
-            class="mdi-action-assessment small"></i><span>Skills</span></a>
-      </li>
-      
-      <li class="bold">
-        <!--
-        ICONS:
-        -->
-        <a aria-label="Navigate to the Education section" href="#education" class="waves-effect waves-dark teal-text"><i
-            class="mdi-social-school small"></i><span>Education</span></a>
-      </li>
-
-      <li class="bold">
-        <!-- 
-        1. mdi-communication-contacts
-        2. mdi-content-mail
-        3. mdi-communication-email
-        -->
-        <a aria-label="Navigate to the Contact section" href="#contact" class="waves-effect waves-dark teal-text"><i
-            class="mdi-content-mail small"></i><span>Contact</span></a>
-      </li>
-
-      <li class="bold">
-        <!--
-        ICONS:
-        1. mdi-action-description
-        2. mdi-file-folder
-        3. mdi-file-folder-open
-        4. mdi-file-attachment
-        5. mdi-file-folder-shared
-        -->
-        <!-- <a aria-label="Open Varad's resume in a new tab" href="#resume" target="_blank"
-          onclick="window.open('https://drive.google.com/file/d/1vYi-bMyIsZPve0x_clxY8xsDtiHiOMd3/view?usp=sharing')"
-          class="waves-effect waves-dark teal-text"><i class="mdi-file-folder-open small"></i><span>Resume</span></a> -->
-        <a aria-label="Open Varad's resume in a new tab" href="assets\resume\Mukul_Shingwani_Resume_2.pdf" target="_blank"
-        class="waves-effect waves-dark teal-text"><i class="mdi-file-folder-open small"></i><span>Resume</span></a>  
-      </li>
-    </ul>
-  </nav>
-
-  <!-- Nav class 2 -->
-  <nav class="hide-on-large only trigger z-depth-1">
-    <a aria-label="Toggle visibility of the mobile navbar" href="#" data-activates="slide-out"
-      class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-    <div class="name-title">
-      <a id="name" aria-label="Navigate to the beginning of the page" href="#" class="teal-text">Mukul Shingwani</a>
+<header class="hero" id="top">
+  <div class="layer layer-back" id="layerBack" aria-hidden="true"></div>
+  <div class="layer layer-mid" id="layerMid" aria-hidden="true"></div>
+  <div class="hero-front" id="heroFront">
+    <h1 class="sr">Mukul Shingwani, AI engineer and Senior Data Scientist at noon</h1>
+    <div class="title-page">
+      <p class="tp-head mono">Lab notebook <span>vol. 03</span></p>
+      <div class="field"><span class="f-label mono">Name</span><svg class="name-svg" viewBox="0 0 1060 210" aria-hidden="true"><text x="0" y="160">Mukul Shingwani</text></svg></div>
+      <div class="field-row">
+        <div class="field"><span class="f-label mono">Role</span><span class="f-val">Senior Data Scientist, AI engineer</span></div>
+        <div class="field"><span class="f-label mono">Lab</span><span class="f-val">noon, Dubai</span></div>
+        <div class="field"><span class="f-label mono">Period</span><span class="f-val">May 2024 &ndash; now</span></div>
+      </div>
+      <div class="field"><span class="f-label mono">Subject</span><p class="hero-lede">I take LLM agents and recommenders from a messy problem to production, for millions of shoppers.</p></div>
+      <p class="hero-proof"><svg viewBox="0 0 40 26" aria-hidden="true"><path d="M2 22 C 12 21, 24 15, 32 5 M24 4 L33 4 L33 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>replaced Google's recommendations in 7 markets / +39% add-to-cart (FBT) / spearheaded NORA</p>
+      <span class="stamp-big" id="stampBig">17 entries / 15 shipped</span>
     </div>
-  </nav>
+  </div>
+  <div class="hero-cue hand" aria-hidden="true"><span class="cue-in">
+    scroll slowly
+    <svg viewBox="0 0 22 36"><path d="M11 2 C 8 12, 14 20, 11 31 M4 24 L11 33 L18 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </span></div>
+</header>
 
-  <!-- Nav class 3 -->
-  <nav class="hide-on-large only">
-    <ul id="slide-out" class="side-nav">
-      <li class="bold">
-        <a aria-label="Navigate to the About section" href="#about" class="waves-effect waves-dark teal-text"><i
-            class="mdi-social-person small"></i><span>About</span></a>
-      </li>
-      <!-- <li class="bold">
-        <a aria-label="Navigate to the Experience section" href="#experience"
-          class="waves-effect waves-dark teal-text"><i
-            class="mdi-action-trending-up small"></i><span>Experience</span></a>
-      </li> -->
-      <li class="bold">
-        <a aria-label="Navigate to the Projects section" href="#projects" class="waves-effect waves-dark teal-text"><i
-            class="mdi-av-my-library-books small"></i><span>Projects</span></a>
-      </li>
-      <li class="bold">
-        <a aria-label="Navigate to the Skills section" href="#skills" class="waves-effect waves-dark teal-text"><i
-            class="mdi-action-assessment small"></i><span>Skills</span></a>
-      </li>
+<main>
+  <section id="loop" aria-labelledby="loopH">
+    <div class="loop-stage" id="loopStage">
+      <div class="wrap loop-grid">
+        <div class="loop-copy">
+          <h2 id="loopH" class="display h-lg"><span class="ln"><span>Every project</span></span><span class="ln"><span>runs the same loop.</span></span></h2>
+          <p class="fade">I own all of it: the data science, the backend, the frontend and the rollout. Then I go round again, bigger.</p>
+        </div>
+        <figure class="loop-fig"><figcaption class="mono">Fig. 0. Method</figcaption>
+        <svg class="loop-svg" id="loopSvg" viewBox="0 0 560 400" role="img" aria-label="The loop: a messy problem, then a model, then a service, then people use it, and what they do feeds the next problem."></svg></figure>
+      </div>
+    </div>
+  </section>
 
-      <li class="bold">
-        <a aria-label="Navigate to the Education section" href="#education" class="waves-effect waves-dark teal-text"><i
-            class="mdi-social-school small"></i><span>Education</span></a>
-      </li>
-      <li class="bold">
-        <a aria-label="Navigate to the Contact section" href="#contact" class="waves-effect waves-dark teal-text"><i
-            class="mdi-content-mail small"></i><span>Contact</span></a>
-      </li>
-      <li class="bold">
-        <a aria-label="Open Mukul's Resume in a new tab"
-          href="https://drive.google.com/file/d/1Ckq8q4C0O-nK5ijb0OMAxP1Rawy5hoMO/view?usp=sharing" target="_blank"
-          class="waves-effect waves-dark teal-text"><i class="mdi-file-folder-open small"></i><span>Resume</span></a>
-      </li>
-    </ul>
-  </nav>
+  <div class="wrap filter-bar" id="journey">
+    <h2 class="display h-lg"><span class="ln"><span>The journey,</span></span><span class="ln"><span>chapter by chapter.</span></span></h2>
+    <div class="filters" role="group" aria-label="Filter projects by area" id="filters"></div>
+  </div>
+  <div id="chapters"></div>
 
-  <!-- Main Content-->
-  <main>
-    <!-- First Section: Heading lines and image -->
-    <section id="intro" class="section scrollspy full-height">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="col-md-9">
-          <div class="content section-padding valign" style="margin-left: 10%; margin-top: 50px;">
-            <div class="caption">
-              <h2>Hi, I'm <span class="teal">Mukul Shingwani</span></h2>
-              <h5 style="color:rgb(255, 255, 255)">A <span class="typing" style="font-weight: 300; color:black"></span></h5>
-              <!-- <h5 style="color:#00796b">A <span class="typing" style="font-weight: 300; color:#fff"></span></h5> -->
-              <h5> passionate programmer with a curious mind who enjoys solving a complex and challenging real-world problems.</h5>
-            </div>
-            <div class="social">
-              <a href="https://www.linkedin.com/in/mukul-shingwani-536432204/" target="_blank">
-                <button class="icon-btn linkedin">
-                  <i class="fa fa-linkedin"></i>
-                </button>
-              </a>
-              <a href="https://github.com/Mukulshingwani" target="_blank">
-                <button class="icon-btn github">
-                  <i class="fa fa-github"></i>
-                </button>
-              </a>
-
-              
-            </div>
-            <div class='buttons'>
-              <a href="#about" class="readme">Read More</a>
-              <a href="#contact" class="contactme">Contact Me</a>
-            </div>
+  <section class="sec" id="impact" aria-labelledby="impactH">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="impactH" class="display h-lg"><span class="ln"><span>What moved.</span></span></h2>
+        <span class="aside fade"><svg viewBox="0 0 44 34" aria-hidden="true"><path d="M40 4 C 30 8, 14 14, 6 28 M5 18 L5 29 L15 29" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>relative lifts only,<br>the big numbers stay private</span>
+      </div>
+      <div class="chart-card fade" data-rough="rect" data-fill="paper" data-fs="solid" data-sw="1.4">
+        <div>
+          <div class="chart-top">
+            <h3><span class="mono">Fig. 1</span>Lift over what ran before, %. Select a bar to open its entry.</h3>
+            <button class="linkbtn" id="tableToggle" aria-expanded="false" aria-controls="liftTable">Show as table</button>
           </div>
+          <svg id="liftSvg" role="img" aria-label="Bar chart of percentage lifts. The same values are in the table view."></svg>
+          <table class="alt" id="liftTable" hidden><thead><tr><th scope="col">Project</th><th scope="col">Metric</th><th scope="col">Lift</th></tr></thead><tbody></tbody></table>
+          <p class="chart-note">Not on the chart: Turing cut daily production errors by ~90% on an onboarded repo, personalised push notifications tripled engagement, and review summaries cut return rates by 2%.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Second Section: About -->
-    <section id="about" class="section scrollspy">
-      <h3 class="page-title white-text teal">About</h3>
-      <div class="container flow-text">
-        <!-- <blockquote>
-          <h2>
-            A Software Developer with a passion for Backend Development and Artificial Intelligence.
-
-          </h2>
-        </blockquote> -->        
-        <p>
-          I am a Pre-Final year Student at IIT Jodhpur and am doing my B.Tech in Artificial Intelligence and Data Science. 
-          I enjoy problem-solving and always try to give my 100% to anything I do.
-          I have worked with languages like C++, Python, Django, MySQL, HTML5, CSS and made several projects involving Machine Learning and Neural Networks.
-        </p>
-        <p>
-          <ul>
-            <li><b>Languages:</b> Python, Java, JavaScript, C, C++, HTML/CSS, Bash</li>
-            <li><b>Databases:</b> MySQL</li>
-            <li><b>Libraries:</b> NumPy, Pandas, OpenCV, sklearn</li>
-            <li><b>Frameworks:</b> Django, Node.js, Keras, TensorFlow, PyTorch, Bootstrap</li>
-          </ul>
-          
-        </p>
-          
-        <!-- <p>
-          
-          Detail-oriented Software Developer with professional experience in Backend Development, Machine Learning, Computer Vision. I am adept in Python, Django, Flask, SQL, Machine Learning, Computer Vision.           
-        </p> -->
-        <p>
-          Looking forward to pursue my career in a progressive and professionally managed organization, this will provide adequate opportunities
-          to draw upon my knowledge, experience and clear strengths for mutual benefits.
+  <section class="sec" id="scope" aria-labelledby="scopeH">
+    <div class="scope-stage" id="scopeStage">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="scopeH" class="display h-lg"><span class="ln"><span>How the scope grew.</span></span></h2>
+        <p class="fade">Keep scrolling to move through the years, or pick one. Filled means owned end to end.</p>
       </div>
-    </section>
-
-
-    <!-- Third Section: Experience -->
-    <!-- <section id="experience" class="section scrollspy">
-      <h3 class="page-title white-text teal">Experience</h3>
-      <div class="container"> -->
-
-        <!-- Latest Experience -->
-        <!-- <div class="card">
-          <div class="card-content">
-            <div class="row">
-              <div class="col s12 m2">
-                <a href="https://www.zhiffy.com/" target="_blank"><img alt="Zhiffy logo"
-                    src="/assets/img/exp-zhiffy-logo-1.webp" class="responsive-img center-block" /></a>
-              </div> -->
-              <!-- <div class="col s12 m10"> -->
-              <!-- <div class="col s12 m10">
-                <p>
-                  <span class="card-title"><a href="https://www.zhiffy.com/" target="_blank"
-                      class="teal-text hoverline">Zhiffy</a></span>
-                </p>
-              </div>
-            </div>
-            <div class="role brown-text text-darken-2">Software Engineer</div>
-            <ul>
-              <li>
-                Developed and managed the backend of an e-commerce platform using Flask, MongoDB, and AWS.
-              </li>
-              <li>
-                Worked on three web applications targeting customers, selling vendors, and admin users; built 50+ RESTful APIs with functionalities
-such as login/sign up, view a product, add a product to cart, checkout the order, etc.
-              </li>
-              <li>Improved the response time by 20% by refactoring the codebase and changing database design and queries.</li>
-              <li>Added a bulk upload feature which reduced the manual work of adding products into a database.</li>
-              <li>
-                <b>Tools:</b> Python, Flask, MongoDB
-              </li>
-            </ul>
-          </div>
-          <div class="card-action">
-            <span>July 2020 - Nov 2020 | Hyderabad, India</span>
-          </div>
+    </div>
+      <div class="wrap scope-grid">
+        <div>
+          <p class="year-big" id="yearBig" aria-live="polite">2024</p>
+          <p class="year-cap" id="yearCap"></p>
+          <div class="years" role="group" aria-label="Pick a year" id="years"></div>
         </div>
-
-        
-        <div class="card">
-          <div class="card-content">
-            <div class="row">
-              <div class="col s12 m2">
-                <a href="https://www.meditab.com" target="_blank"><img alt="Meditab logo"
-                    src="/assets/img/exp-meditab-logo-500x500.jpg" class="responsive-img center-block" /></a>
-              </div> -->
-              <!-- <div class="col s12 m10"> -->
-              <!-- <div class="col s12 m10">
-                <p>
-                  <span class="card-title"><a href="http://meditab.com" target="_blank"
-                      class="teal-text hoverline">Meditab</a></span>
-                </p>
-              </div>
-            </div>
-            <div class="role brown-text text-darken-2">Programmer Analyst</div>
-            <ul>
-              <li>
-                Customized a tree-based optimization algorithm that separates drugs into distinct groups to maximize the concurrent execution of drug
-dispenser robots; improved an optimization algorithm that reduced the cycle-time of the automation process by 25%.
-              </li>
-              <li>
-                Devised a customized recursion algorithm to extend the functionality of the current environment to a multi-robot and multi-system
-environment
-              </li> -->
-              <!-- <li>
-                Built a modular video analytics app using Flask, OpenCV that tracks the location of each human in a multi-camera environment;
-utilized perspective transformation, object detection, and object tracking to find the location of a human.
-              </li>
-              <li>Increased the speed of the video analytics app by 20% by using a customized YOLOv3 algorithm to perform object detection and
-                DeepSORT algorithm for multi-object tracking.</li>
-              <li>
-                <b>Tools:</b> Python, Flask, OpenCV, Keras, Tensorflow, PyTorch
-              </li>
-            </ul>
-          </div>
-          <div class="card-action">
-            <span>Dec 2018 - July 2019 | Ahmedabad, India</span>
-          </div>
-        </div> -->
-
-        <!-- Experience 2 -->
-        <!-- <div class="card">
-          <div class="card-content">
-            <div class="row">
-              <div class="col s12 m2">
-                <img alt="Mtag logo" src="/assets/img/exp-mtag-logo-250x250.jpg" class="responsive-img center-block" />
-
-              </div> -->
-
-              <!-- <div class="col s12 m10"> -->
-              <!-- <div class="col s12 m10">
-                <p>
-                  <span class="card-title"><a href="#experience" class="teal-text hoverline">Mtag
-                      Innovations</a></span>
-                </p>
-              </div>
-            </div>
-            <div class="role brown-text text-darken-2">Software Developer</div>
-            <ul>
-              <li>
-                Programmed a cloud-based web app using Flask and JavaScript aimed at storing, visualizing, and tracking temperature and humidity
-of each drug container to estimate the degradation of the drug.
-              </li>
-              <li>
-                Created an alert system to send notifications and emails when the parameters exceed the threshold.
-              </li>
-              <li>
-                <b>Tools:</b> Python, Flask, JavaScript
-              </li> -->
-            <!-- </ul>
-          </div>
-          <div class="card-action">
-            <span>July 2018 - Nov 2018 | Ahmedabad, India</span>
-          </div>
-        </div> -->
-
-        <!-- Experience 3 -->
-        <!-- <div class="card">
-          <div class="card-content">
-            <div class="row">
-              <div class="col s12 m2">
-                <a href="https://www.cignex.com" target="_blank"><img alt="Cignex logo"
-                    src="/assets/img/exp-cignex-logo.png" class="responsive-img center-block" /></a>
-              </div>
-              <div class="col s12 m10">
-                <p>
-                  <span class="card-title"><a href="https://www.cignex.com" target="_blank"
-                      class="teal-text hoverline">CIGNEX
-                      Datamatics </a></span>
-                </p>
-              </div>
-            </div>
-            <div class="role brown-text text-darken-2">Project Trainee</div>
-            <ul>
-              <li>
-                Designed a library management system for a local library, where we undertook activities like requirement
-                elicitation, preparing Data Flow
-                and Entity-Relationship diagrams.
-              </li>
-              <li>
-                Delivered a solution for a POC involving Automatic Financial Document Classifier using Natural Language
-                Processing and Support Vector
-                Machines with 96% accuracy on the company’s data.
-              </li>
-              <li>
-                <b>Tools:</b> Python, Scikit-learn, NLTK
-              </li>
-            </ul>
-          </div>
-          <div class="card-action">
-            <span>June 2017 - July 2017 | Ahmedabad, India</span>
-          </div>
-        </div>
-
+        <div class="bubbles" id="bubbles"></div>
       </div>
-    </section> -->
+    </div>
+  </section>
 
-    <!-- Fourth Section: Projects -->
-    <section id="projects" class="section scrollspy">
-      <h3 class="page-title white-text teal">Projects</h3>
-      <div class="container">
-        <div class="row">
+  <section class="sec" id="toolbox" aria-labelledby="toolH">
+    <div class="wrap"><div class="sec-head"><h2 id="toolH" class="display h-lg"><span class="ln"><span>In the toolbox.</span></span></h2></div></div>
+    <div class="marquee"><div class="track" id="track"></div></div>
+  </section>
 
-          <div class="col s12 m6 l4">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img alt="music streaming app" src="assets\img\covid.jpg" style="height: 100%; width: 100%" class="activator" />
-              </div>
-              <div class="card-content">
-                <span class="card-title activator teal-text hoverline">Web App for COVID-19 Detection<i
-                    class="mdi-navigation-more-vert right"></i></span>
-                <p>
-                  A web app to detect the presence of COVID-19 using X-ray of lungs
-                </p>
-              </div>
-              <div class="card-reveal">
-                <!-- TODO: change this -- only close button -->
-                <!-- <span class="card-title brown-text">Accomplishments<i class="mdi-navigation-close right"></i></span> -->
-                <span class="card-title grey-text"><small>Accomplishments</small><i
-                    class="mdi-navigation-close right"></i></span>
-                <ul>
-                  <li><b>Tools:</b> ML,Neural Networks, Deep Learning, Python, HTML, CSS, Javascript</li>
-                  <li>Applied supervised, unsupervised and deep Learning techniques using state of the art models</li>
-                  <li>Did Image segementation of lungs and applied U-Net model to increase the accuracy of model</li>
-                  <li>Multi Modular approach</li>
-                  <li>Exploratory Data Analysis and Comparitive Analysis was done to compare the models based on different evaluation metrices</li>
-                  <li>Deployed and hosted the model using Github so that it becomes accessible to common public</li>
+  <section class="contact" id="hello" aria-labelledby="helloH">
+    <svg class="plane-path" id="planePath" aria-hidden="true"></svg>
+    <svg class="plane" id="plane" viewBox="0 0 58 42" aria-hidden="true"><path d="M2 21 L56 3 L42 39 L29 26 Z M29 26 L56 3" style="fill:var(--paper); stroke:var(--ink)" stroke-width="2" stroke-linejoin="round"/></svg>
+    <div class="wrap">
+      <h2 id="helloH" class="display h-xl"><span class="ln"><span>Let's build</span></span><span class="ln"><span>something</span></span><span class="ln"><span>that ships.</span></span></h2>
+      <p class="hello-copy fade">Open to AI Engineer and Forward Deployed Engineer roles. Based in Dubai, UAE. Write to <a href="mailto:mukulshingwani@gmail.com">mukulshingwani@gmail.com</a>.</p>
+      <div class="actions">
+        <a class="rbtn" data-rough="rect" data-fill="hl" data-fs="solid" data-sw="1.6" data-mag href="mailto:mukulshingwani@gmail.com"><span>Email me</span></a>
+        <a class="rbtn" data-rough="rect" data-sw="1.6" data-mag href="https://www.linkedin.com/in/mukul-shingwani-536432204/" rel="noopener"><span>LinkedIn</span></a>
+        <a class="rbtn" data-rough="rect" data-sw="1.6" data-mag href="Mukul_Shingwani_Resume.pdf"><span>Resume (PDF)</span></a>
+        <a class="rbtn" data-rough="rect" data-sw="1.6" data-mag href="https://github.com/Mukulshingwani" rel="noopener"><span>GitHub</span></a>
+      </div>
+      <div class="field-row sign">
+        <div class="field"><span class="f-label mono">Recorded by</span><span class="f-val">Mukul Shingwani</span></div>
+        <div class="field"><span class="f-label mono">Witnessed by</span><span class="f-val">you?</span></div>
+        <div class="field"><span class="f-label mono">Date</span><span class="f-val" id="today"></span></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="wrap">B.Tech in AI and Data Science, IIT Jodhpur, department rank 1. Logged by hand. No tracking.</footer>
 
-                </ul>
-                <div class="card-action">
-                  <a aria-label="Visit " href="https://mukulshingwani.github.io/Covid_19_detection_from_Xray/" target="_blank" data-position="top"
-                    data-tooltip="View Online"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-external-link"></i></a>
-                  <a aria-label="Visit the GitHub repo for  project" href="https://github.com/Mukulshingwani/Covid_19_detection_from_Xray"
-                    target="_blank" data-position="top" data-tooltip="View Source"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-github"></i></a>
-                </div>
-              </div>
-            </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/roughjs@4.6.6/bundled/rough.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(() => {
+const NS = "http://www.w3.org/2000/svg";
+const REDUCE = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const FINE = matchMedia("(pointer: fine)").matches;
+const DESK = () => innerWidth >= 900;
+if (REDUCE) document.documentElement.classList.add("rm");
+gsap.registerPlugin(ScrollTrigger);
+const tok = n => getComputedStyle(document.documentElement).getPropertyValue("--" + n).trim();
+const v = n => `var(--${n})`;
+const store = { get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }, set(k,val){ try { localStorage.setItem(k,val); } catch(e){} } };
+
+/* ================= Content ================= */
+const AREAS = [
+  { id:"Recommendations", note:"n-blue", accent:"blue" }, { id:"GenAI and LLMs", note:"n-yellow", accent:"orange" }, { id:"Agents", note:"n-violet", accent:"violet" },
+  { id:"Platforms", note:"n-green", accent:"green" }, { id:"Analytics", note:"n-pink", accent:"red" }, { id:"Applied AI", note:"n-orange", accent:"ink-2" }
+];
+const areaOf = id => AREAS.find(a => a.id === id);
+
+const CHAPTERS = [
+  { id:"assoc", best:"3x engagement", num:"01", title:["Associate","Data Scientist"], when:"May 2024 – Mar 2025, Gurugram", line:"First models in production: recommendations and GenAI notifications.", card:"n-yellow",
+    scene:[ {i:"bell",x:24,y:30,s:150,d:1.2,f:"n-orange",r:-10}, {i:"cart",x:66,y:26,s:170,d:.7,f:"n-blue",r:6}, {i:"plate",x:38,y:74,s:140,d:.9,f:"n-green",r:-4}, {i:"bars",x:78,y:70,s:130,d:1.4,f:"n-pink",r:8} ] },
+  { id:"ds1", best:"+39% add-to-cart", num:"02", up:true, title:["Data","Scientist I"], when:"Mar 2025 – Jan 2026, Gurugram", line:"GenAI goes live: chat, reviews and recommendations for every shopper.", card:"n-blue",
+    scene:[ {i:"chat",x:30,y:30,s:170,d:1,f:"n-yellow",r:-6}, {i:"star",x:72,y:22,s:120,d:1.5,f:"n-yellow",r:12}, {i:"shield",x:68,y:68,s:150,d:.8,f:"n-green",r:5}, {i:"link",x:28,y:74,s:140,d:1.2,f:"n-pink",r:-8} ] },
+  { id:"senior", best:"+17% CTR vs Google", num:"03", up:true, title:["Senior","Data Scientist"], when:"Jan 2026 – now, Dubai", line:"Agents and platforms other teams build on: NORA, Turing, Polaris.", card:"n-green",
+    scene:[ {i:"pin",x:30,y:30,s:160,d:1,f:"n-pink",r:-5}, {i:"nodes",x:72,y:28,s:160,d:1.4,f:"n-violet",r:6}, {i:"building",x:30,y:74,s:150,d:.8,f:"n-blue",r:-3}, {i:"cards",x:72,y:72,s:150,d:1.2,f:"n-yellow",r:7} ] }
+];
+
+const PROJECTS = [
+  { ch:"assoc", when:"2024", title:"Order Again", area:"Recommendations", status:"live",
+    what:"Suggests what you are likely to buy again, right in the cart.", out:"+12% CTR on cart pages",
+    part:"Built the Order Again recommender and proved it in an A/B test against the previous logic." },
+  { ch:"assoc", when:"2024", title:"Personalised push notifications", area:"GenAI and LLMs", status:"live",
+    what:"Writes each shopper a notification that fits them.", out:"3x engagement",
+    part:"Engineered a GenAI-driven system that sends personalised notifications at scale." },
+  { ch:"assoc", when:"2024", title:"noon Food recommendations", area:"Recommendations", status:"live",
+    what:"Personalised recommendations for noon Food users.", out:"Personalised discovery on noon Food",
+    part:"Developed the hybrid recommendation engine behind personalised discovery on noon Food." },
+  { ch:"assoc", when:"2025", title:"Experimentation pipelines", area:"Analytics", status:"live",
+    what:"A/B testing, pre-post analysis and burn estimation for business teams.", out:"Faster decisions across units",
+    part:"Developed the experimentation pipelines that business units use for real-time decisions." },
+
+  { ch:"ds1", when:"2025", title:"Product-page chatbot", area:"GenAI and LLMs", status:"live",
+    what:"noon's first in-house chatbot, answering shopper questions on product pages.", out:"Foundation for NORA",
+    part:"Spearheaded it end to end: a scalable, cost-effective pipeline that laid the foundation for platform-wide conversational commerce." },
+  { ch:"ds1", when:"2025", title:"Frequently Bought Together", area:"Recommendations", status:"live",
+    what:"Suggests what goes with the product you are viewing. Replaced Google's API.", out:"+39% add-to-cart",
+    part:"Implemented the in-house engine and proved it in an A/B test: +81% impressions, +52% PDP views, +39% add-to-cart, +11% items per order. Live for every user on noon and Supermall." },
+  { ch:"ds1", when:"2025", title:"GenAI review moderation", area:"GenAI and LLMs", status:"live",
+    what:"Approves or rejects customer reviews automatically.", out:"100x less manual review time",
+    part:"Built the automated moderation system: +30% approval rate and +22% SKU coverage." },
+  { ch:"ds1", when:"2025", title:"Review summaries", area:"GenAI and LLMs", status:"live",
+    what:"One short summary of what buyers say about a product.", out:"−2% returns, +1% NMV",
+    part:"Deployed LLM review summaries for 100% of users. Shoppers decide with less reading: 7% fewer individual review views, 2% fewer returns." },
+  { ch:"ds1", when:"2025", title:"Search relevancy interface", area:"Analytics", status:"live",
+    what:"Shows category managers keyword gaps and ranking or assortment issues.", out:"Clear GMV opportunities",
+    part:"Designed the interface that turns search gaps into actionable brand and SKU expansion lists." },
+
+  { ch:"senior", when:"2026", title:"NORA shopping assistant", area:"Agents", status:"live",
+    what:"One assistant that understands what you want and routes you across noon, Minutes and Food, in English and Arabic.", out:"p90 under 7 s, 4% adoption",
+    part:"Spearheaded noon's first platform-wide conversational shopping assistant: a multi-agent system with specialised agents for intent routing, comparison, deep dives and reorders." },
+  { ch:"senior", when:"2026", title:"Seal detection", area:"Applied AI", status:"built",
+    what:"Checks products for any signs of tampering.", out:"Built with logistics teams",
+    part:"Developed the seal detection system with noon's logistics teams (LMS and AFS)." },
+  { ch:"senior", when:"2026", title:"CAV and MFB recommenders", area:"Recommendations", status:"live",
+    what:"“Customers Also Viewed” and “More from Brands”, built from scratch. Replaced Google Recommendations AI in 7 markets.", out:"+11% CTR, +6% carousel GMV (CAV), +17% CTR (MFB)",
+    part:"Built both in-house from scratch and beat Google in live A/B tests, while cutting the vendor cost." },
+  { ch:"senior", when:"2026", title:"AI features for UGC", area:"GenAI and LLMs", status:"live",
+    what:"“Craft my review” drafts a review from pros and cons a verified buyer taps. AI review tags surface themes like battery life, each backed by real reviews.", out:"\u201cCraft my review\u201d live for half of users",
+    part:"Shipped for the UGC squad, from data science to backend." },
+  { ch:"senior", when:"2026", title:"Turing", area:"Agents", status:"live",
+    what:"noon's autonomous multi-agent engineering tool. Agents triage every production error, find the root cause, write the fix plus a test that proves it, and open a ready-to-merge PR.", out:"~90% fewer daily errors on an onboarded repo in a month",
+    part:"Co-built Turing. It reworks its own PRs until CI passes, answers reviewer comments, and routes issues outside its scope to the owning team. Engineers review fixes instead of chasing bugs." },
+  { ch:"senior", when:"2026", title:"Polaris", area:"Platforms", status:"live",
+    what:"noon's address-intelligence platform and a one-stop solution for all 5 marketplaces, mapping every delivery from zone to doorstep.", out:"One view across all 5 marketplaces",
+    part:"Built and shipped end to end, from design to backend and frontend. Shows leadership and ops where and why deliveries go late or fail, tracks trends at multiple levels, and turns fixes from guesswork into evidence." },
+  { ch:"senior", when:"2026", title:"Minutes search guard", area:"GenAI and LLMs", status:"live",
+    what:"Keeps irrelevant quick-commerce products out of top search slots.", out:"Idea to production in 10 days",
+    part:"Built and shipped across the UAE and KSA, with guards that stop it from hiding the right products." },
+  { ch:"senior", when:"2026", title:"Central Address Service", area:"Platforms", status:"wip",
+    what:"One shared source of truth that tells every delivery fleet exactly where to send the rider: the right building, entrance, parking and door photos.", out:"Right building 91% vs 33% in pilot",
+    part:"Building it to learn from deliveries across all fleets instead of trusting the customer's pin, and to keep customer and rider data private by design." }
+];
+
+const LIFTS = [
+  { p:"Frequently Bought Together", t:"Frequently Bought Together", m:"Impressions", v:81 },
+  { p:"Frequently Bought Together", t:"Frequently Bought Together", m:"PDP views", v:52 },
+  { p:"Frequently Bought Together", t:"Frequently Bought Together", m:"Add-to-cart", v:39 },
+  { p:"Review moderation", t:"GenAI review moderation", m:"Approval rate", v:30 },
+  { p:"Review moderation", t:"GenAI review moderation", m:"SKU coverage", v:22 },
+  { p:"More from Brands", t:"CAV and MFB recommenders", m:"CTR vs Google", v:17 },
+  { p:"Order Again", t:"Order Again", m:"Cart CTR", v:12 },
+  { p:"Customers Also Viewed", t:"CAV and MFB recommenders", m:"CTR vs Google", v:11 },
+  { p:"Frequently Bought Together", t:"Frequently Bought Together", m:"Items per order", v:11 },
+  { p:"Customers Also Viewed", t:"CAV and MFB recommenders", m:"Carousel GMV vs Google", v:6 }
+];
+
+const YEARS = [
+  { y:"2024", cap:"Models. One recommender or GenAI feature at a time." },
+  { y:"2025", cap:"Products. GenAI features shipped to every user." },
+  { y:"2026", cap:"Platforms. Systems other teams build on, end to end." }
+];
+const CAPS = [
+  { n:"Recommender systems", x:24, y:16, lv:["core","core","core"] },
+  { n:"GenAI products", x:55, y:10, lv:["some","core","core"] },
+  { n:"Multi-agent systems", x:86, y:26, lv:["none","some","core"] },
+  { n:"Data pipelines", x:24, y:56, lv:["some","core","core"] },
+  { n:"Backend and APIs", x:56, y:48, lv:["none","some","core"] },
+  { n:"Frontend and product design", x:86, y:72, lv:["none","none","core"] },
+  { n:"Owning outcomes with stakeholders", x:46, y:88, lv:["some","some","core"] }
+];
+const LV = { core:"owned end to end", some:"helped build", none:"not yet" };
+const TOOLS = ["Agentic AI","MCP","LLM applications","Multi-agent systems","RAG","LLM evaluation","Recommender systems","Learning to rank","A/B testing","Python","SQL","FastAPI","BigQuery","MySQL","Kubernetes","Cloud Run","Pub/Sub","Gemini","OpenAI","LangGraph","Vertex AI","React","TypeScript","Maps and geospatial"];
+
+document.getElementById("today").textContent = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+document.getElementById("stampBig").textContent = `${PROJECTS.length} entries / ${PROJECTS.filter(p => p.status === "live").length} shipped`;
+
+/* ================= Icons (hand-drawn via rough.js) ================= */
+const ICONS = {
+  cart:{ f:["M17 18 L38 18 L36 28 L19 28 Z"], p:["M4 8 L11 8 L17 32 L38 32 L43 15 L13 15"], c:[[19,40,6],[35,40,6]] },
+  bell:{ f:["M24 6 C15 6 13 15 13 23 L9 32 L39 32 L35 23 C35 15 33 6 24 6 Z"], p:["M20 36 C21 41 27 41 28 36"] },
+  chat:{ f:["M5 9 L43 9 L43 31 L21 31 L12 40 L13 31 L5 31 Z"], p:["M12 17 L35 17","M12 23 L28 23"] },
+  star:{ f:["M24 4 L29 18 L44 18 L32 27 L36 42 L24 33 L12 42 L16 27 L4 18 L19 18 Z"] },
+  pin:{ f:["M24 45 C20 39 10 28 10 18 C10 10 16 4 24 4 C32 4 38 10 38 18 C38 28 28 39 24 45 Z"], c:[[24,18,10]] },
+  bars:{ f:["M9 43 L9 28 L16 28 L16 43 Z","M20 43 L20 14 L27 14 L27 43 Z","M31 43 L31 22 L38 22 L38 43 Z"], p:["M5 43 L45 43"] },
+  nodes:{ p:["M12 12 L36 10","M12 12 L24 36","M36 10 L24 36"], fc:[[12,12,13],[36,10,13],[24,36,13]] },
+  shield:{ f:["M24 4 L40 10 L40 22 C40 33 32 41 24 44 C16 41 8 33 8 22 L8 10 Z"], p:["M16 24 L22 30 L33 17"] },
+  building:{ f:["M8 44 L8 10 L28 10 L28 44 Z"], p:["M28 20 L40 20 L40 44","M4 44 L44 44","M13 17 L16 17","M20 17 L23 17","M13 25 L16 25","M20 25 L23 25","M13 33 L16 33","M20 33 L23 33"] },
+  plate:{ fc:[[24,24,34]], c:[[24,24,18]], p:["M5 10 L5 24","M43 10 L43 38"] },
+  cards:{ f:["M18 8 L32 8 L32 40 L18 40 Z"], p:["M4 13 L16 13 L16 35 L4 35 Z","M34 13 L46 13 L46 35 L34 35 Z"] },
+  link:{ f:["M5 14 L26 14 L26 35 L5 35 Z"], p:["M21 9 L42 9 L42 30 L21 30 Z"] },
+  spark:{ p:["M24 4 L24 16","M24 32 L24 44","M4 24 L16 24","M32 24 L44 24","M10 10 L17 17","M31 31 L38 38","M38 10 L31 17","M17 31 L10 38"] },
+  squiggle:{ p:["M4 30 C10 10, 16 10, 20 26 S 30 42, 34 22 S 42 8, 46 18"] }
+};
+function cssify(root){
+  root.querySelectorAll("path").forEach(p => ["stroke","fill"].forEach(a => { const val = p.getAttribute(a); if (val && val.startsWith("var(")){ p.style[a] = val; p.removeAttribute(a); } }));
+  return root;
+}
+function icon(name, { size = 90, sw = 2, ink = "ink", fill = "n-yellow", fs = "solid", seed = 3 } = {}){
+  const svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("class", "ic"); svg.setAttribute("viewBox", "-4 -4 56 56"); svg.setAttribute("width", size); svg.setAttribute("height", size); svg.setAttribute("aria-hidden", "true");
+  const rc = rough.svg(svg), def = ICONS[name], w = sw * 56 / size;
+  const base = { stroke: v(ink), strokeWidth: w, roughness: .6, bowing: .4, seed };
+  const fillO = { ...base, fill: v(fill), fillStyle: fs, hachureGap: 3.2, fillWeight: w * .8 };
+  (def.f || []).forEach(d => svg.appendChild(rc.path(d, fillO)));
+  (def.fc || []).forEach(([x, y, d]) => svg.appendChild(rc.circle(x, y, d, fillO)));
+  (def.p || []).forEach(d => svg.appendChild(rc.path(d, base)));
+  (def.c || []).forEach(([x, y, d]) => svg.appendChild(rc.circle(x, y, d, base)));
+  return cssify(svg);
+}
+
+/* ================= Rough helpers ================= */
+const seeds = new WeakMap();
+const seedFor = (el, fresh) => { if (fresh || !seeds.has(el)) seeds.set(el, 1 + Math.floor(Math.random() * 99999)); return seeds.get(el); };
+const hidePaths = paths => paths.forEach(p => { const L = p.getTotalLength() + 2; p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
+function drawIn(root, { dur = .9, delay = 0, stagger = .03 } = {}){
+  if (REDUCE) return;
+  const paths = [...root.querySelectorAll("path")]; hidePaths(paths);
+  return gsap.to(paths, { strokeDashoffset: 0, duration: dur, delay, stagger, ease: "power2.inOut" });
+}
+function sketch(el, { animate = false, fresh = false, dur } = {}){
+  let svg = el.querySelector(":scope > svg.rl");
+  if (!svg){ svg = document.createElementNS(NS, "svg"); svg.setAttribute("class", "rl"); svg.setAttribute("aria-hidden", "true"); el.prepend(svg); }
+  const pad = 14, w = el.offsetWidth, h = el.offsetHeight;
+  if (!w || !h) return;
+  svg.setAttribute("width", w + pad * 2); svg.setAttribute("height", h + pad * 2);
+  svg.style.left = -pad + "px"; svg.style.top = -pad + "px"; svg.innerHTML = "";
+  const rc = rough.svg(svg), d = el.dataset;
+  const o = { stroke: v(d.stroke || "ink"), strokeWidth: +(d.sw || 1.5), roughness: +(d.rgh || .55), bowing: .4, seed: seedFor(el, fresh) };
+  if (d.fill){ o.fill = v(d.fill); o.fillStyle = d.fs || "hachure"; o.hachureGap = 7; o.fillWeight = 1.3; }
+  if (d.dash) o.strokeLineDash = [4, 7];
+  let node;
+  if (d.rough === "rect") node = rc.rectangle(pad, pad, w, h, o);
+  else if (d.rough === "ellipse") node = rc.ellipse(pad + w / 2, pad + h / 2, w + 18, h + 14, o);
+  if (node){ svg.appendChild(node); cssify(svg); }
+  if (animate) drawIn(svg, { dur: dur || .9 });
+}
+const sketchAll = () => document.querySelectorAll("[data-rough]").forEach(el => sketch(el));
+function arrow(rc, pts, o){
+  const g = document.createElementNS(NS, "g");
+  g.appendChild(rc.curve(pts, o));
+  const [a, b] = [pts[pts.length - 2], pts[pts.length - 1]], ang = Math.atan2(b[1] - a[1], b[0] - a[0]), s = 13;
+  g.appendChild(rc.line(b[0], b[1], b[0] - s * Math.cos(ang - .45), b[1] - s * Math.sin(ang - .45), o));
+  g.appendChild(rc.line(b[0], b[1], b[0] - s * Math.cos(ang + .45), b[1] - s * Math.sin(ang + .45), o));
+  return cssify(g);
+}
+function svgText(parent, x, y, str, size, anchor = "middle", fill){
+  const t = document.createElementNS(NS, "text");
+  t.setAttribute("x", x); t.setAttribute("y", y); t.setAttribute("text-anchor", anchor); t.setAttribute("font-size", size);
+  if (fill) t.style.fill = v(fill);
+  t.textContent = str; parent.appendChild(t); return t;
+}
+
+/* ================= Hero layers ================= */
+const layerBack = document.getElementById("layerBack"), layerMid = document.getElementById("layerMid");
+(() => {
+  const big = document.createElementNS(NS, "svg");
+  big.setAttribute("viewBox", "0 0 1000 700"); big.setAttribute("preserveAspectRatio", "xMidYMid slice");
+  big.style.cssText = "inset:0;width:100%;height:100%";
+  const rc = rough.svg(big);
+  big.appendChild(rc.circle(900, 330, 520, { stroke: v("grid2"), strokeWidth: 1.5, roughness: .6, seed: 4 }));
+  layerBack.appendChild(cssify(big));
+})();
+const SMALL = innerWidth < 760;
+const HERO_FLOATS = [];
+const heroFloats = HERO_FLOATS.map((h, k) => {
+  const el = document.createElement("div"); el.className = "float";
+  el.style.left = h.x + "%"; el.style.top = h.y + "%";
+  el.appendChild(icon(h.i, { size: SMALL ? h.s * .62 : h.s, fill: h.f, ink: h.ink || "ink", seed: 40 + k }));
+  layerMid.appendChild(el);
+  gsap.set(el, { xPercent: -50, yPercent: -50, rotate: h.r });
+  if (SMALL && [1, 4, 5, 6].includes(k)) el.style.display = "none";
+  return { el, ...h };
+});
+
+/* ================= Loop diagram ================= */
+const loopSvg = document.getElementById("loopSvg");
+const loopParts = [];
+(() => {
+  const rc = rough.svg(loopSvg);
+  const boxes = [
+    { x:20, y:28, w:220, h:80, label:"a messy problem", fill:"n-yellow", seed:11 },
+    { x:330, y:28, w:210, h:80, label:"a model", fill:"n-blue", seed:12 },
+    { x:330, y:240, w:210, h:80, label:"a service", fill:"n-green", seed:13 },
+    { x:20, y:240, w:220, h:80, label:"people use it", fill:"n-pink", seed:14 }
+  ];
+  const arrows = [
+    [[246, 60], [286, 42], [324, 62]], [[444, 114], [468, 176], [444, 234]],
+    [[324, 286], [284, 306], [246, 286]], [[118, 234], [94, 172], [118, 114]]
+  ];
+  boxes.forEach((b, i) => {
+    const g = document.createElementNS(NS, "g");
+    g.appendChild(rc.rectangle(b.x, b.y, b.w, b.h, { stroke: v("ink"), strokeWidth: 1.6, roughness: .5, bowing: .3, fill: v(b.fill), fillStyle: "solid", seed: b.seed }));
+    cssify(g);
+    svgText(g, b.x + b.w / 2, b.y + b.h / 2 + 10, b.label, b.label.length > 12 ? 31 : 34);
+    loopSvg.appendChild(g); loopParts.push({ g, kind: "box" });
+    const a = arrow(rc, arrows[i], { stroke: v(i === 3 ? "red" : "ink"), strokeWidth: 1.8, roughness: .5, bowing: .3, seed: 21 + i });
+    loopSvg.appendChild(a); loopParts.push({ g: a, kind: "arrow" });
+  });
+  const LS = innerWidth < 760 ? 1.3 : 1;
+  const note = document.createElementNS(NS, "g");
+  ["learn,", "repeat,", "go bigger"].forEach((t, k) => svgText(note, 80, 160 + k * 27 * LS, t, 25 * LS, "end", "red"));
+  loopSvg.appendChild(note); loopParts.push({ g: note, kind: "text" });
+  const center = document.createElementNS(NS, "g");
+  svgText(center, 284, 168, "every project", 24 * LS, "middle", "ink-2"); svgText(center, 284, 168 + 27 * LS, "runs this loop", 24 * LS, "middle", "ink-2");
+  loopSvg.appendChild(center); loopParts.push({ g: center, kind: "text" });
+  const cap = document.createElementNS(NS, "g");
+  cap.appendChild(rc.curve([[120, 376], [280, 388], [450, 372]], { stroke: v("blue"), strokeWidth: 2, roughness: .4, seed: 31 }));
+  cssify(cap);
+  svgText(cap, 284, 360, "data science, backend, frontend, rollout", 23 * (LS > 1 ? 1.1 : 1), "middle", "blue");
+  loopSvg.appendChild(cap); loopParts.push({ g: cap, kind: "cap" });
+})();
+
+/* ================= Chapters & notes ================= */
+const chaptersEl = document.getElementById("chapters");
+let noteIndex = 0;
+const chapterEls = CHAPTERS.map(c => {
+  const sec = document.createElement("section");
+  sec.className = "chapter"; sec.id = "ch-" + c.id; sec.setAttribute("aria-labelledby", "chT-" + c.id);
+  sec.innerHTML = `
+    <div class="ch-stage">
+      <div class="ch-card" style="--card:var(--${c.card})">
+        <div class="ch-frame" data-rough="rect" data-sw="1.8"></div>
+        <div class="ch-inner">
+          <div class="ch-text">
+            <span class="ln"><span><span class="ch-num hand">${c.num}</span>${c.up ? `<span class="ch-up" aria-hidden="true"><svg viewBox="0 0 42 28"><path d="M3 24 C 13 22, 24 15, 33 5 M25 5 L34 4 L34 13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>+1 level</span>` : ""}</span></span>
+            <span class="ln"><span class="ch-when">${c.when}</span></span>
+            <h2 class="display ch-title" id="chT-${c.id}">${c.title.map(t => `<span class="ln"><span>${t}</span></span>`).join("")}</h2>
+            <span class="ln"><span class="ch-line">${c.line}</span></span>
           </div>
-
-          <div class="col s12 m6 l4">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img alt="quiz app" src="assets\img\flight.jpg" style="height: 100%; width: 100%" class="activator" />
-              </div>
-              <div class="card-content">
-                <span class="card-title activator teal-text hoverline">Flight price prediction - Web app<i
-                    class="mdi-navigation-more-vert right"></i></span>
-                <p>
-                  A web app for predicting the prices of flights
-                </p>
-              </div>
-              <div class="card-reveal">
-                <!-- TODO: change this -- only close button -->
-                <!-- <span class="card-title brown-text">Accomplishments<i class="mdi-navigation-close right"></i></span> -->
-                <span class="card-title grey-text"><small>Accomplishments</small><i
-                    class="mdi-navigation-close right"></i></span>
-                <ul>
-                  <li><b>Tools:</b> ML, Neural Networks, Python, HTML, CSS, Javascript</li>
-                  <li>used parameters like type of airline, arrival time, departure time, duration of the flight, source, destination and more.</li>
-                  <li>Did exploratory data analysis and Comparitive analysis of various models based on different evaluation metrices</li>
-                  <li>Deployed and hosted the model using Github so that it becomes accessible to common public</li>
-
-                </ul>
-                <div class="card-action">
-                  <a aria-label="Visit " href="https://mukulshingwani.github.io/Flight_price_prediction.github.io/" target="_blank" data-position="top"
-                    data-tooltip="View Online"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-external-link"></i></a>
-                  <a aria-label="Visit the GitHub repo for  project" href="https://github.com/Mukulshingwani/Flight_price_prediction.github.io"
-                    target="_blank" data-position="top" data-tooltip="View Source"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-github"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 1. Django Project -->
-          <!-- <div class="col s12 m6 l6">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img alt="django web app" src="/assets/img/project-library-logo.png" style="height: 100%; width: 100%" class="activator" />
-              </div>
-              <div class="card-content">
-                <span class="card-title activator teal-text hoverline">Local Library Web-App<i
-                    class="mdi-navigation-more-vert right"></i></span>
-                <p>
-                  A web-app that creates an online catalog for a small local library, where users can browse available books and manage their accounts.
-                </p>
-              </div>
-              <div class="card-reveal">
-                <span class="card-title grey-text"><small>Accomplishments</small><i
-                    class="mdi-navigation-close right"></i></span>
-                <ul>
-                  <li><b>Tools:</b> HTML, CSS, Bootstrap, SQLite, Django, Heroku</li>
-                  <li>Users can view list and detail information for books and authors.</li>
-                  <li>Admin users can create and manage models.</li>
-                  <li>Librarians can renew reserved books.</li>
-
-                </ul>
-                <div class="card-action">
-                  <a aria-label="Visit " href="https://django-local-lib.herokuapp.com" target="_blank" data-position="top"
-                    data-tooltip="View Online"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-external-link"></i></a>
-                  <a aria-label="Visit the GitHub repo for  project" href="https://github.com/varadbhogayata/django-local-library"
-                    target="_blank" data-position="top" data-tooltip="View Source"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-github"></i></a>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
-          <!-- Flask Project -->
-          <div class="col s12 m6 l4">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img alt="Screenshot of web app" src="assets\img\weat.gif"
-                style="height: 100%; width: 100%" class="activator" />
-              </div>
-              <div class="card-content">
-                <span class="card-title activator teal-text hoverline">Weather App<i
-                    class="mdi-navigation-more-vert right"></i></span>
-                <p>
-                  A simple weather app to get to know about temperature and more
-                </p>
-              </div>
-              <div class="card-reveal">
-                <!-- TODO: change this -- only close button -->
-                <!-- <span class="card-title brown-text">Accomplishments<i class="mdi-navigation-close right"></i></span> -->
-                <span class="card-title teal-text"><small>Accomplishments</small><i
-                    class="mdi-navigation-close right"></i></span>
-                <ul>
-                  <li><b>Tools:</b> API, HTML, CSS, Bootstrap, Javascript</li>
-                  <li>made a simple API call to retrieve information about a particular city's weather</li>
-                  <li>dynamic background, which shows something related to the city entered</li>
-                  <li>returns parameters such as temperature, humidity, windspeed, etc.</li>
-                  <li>Also made a Desktop App for the same</li>
-                  <li>deployed and hosted using Github</li>
-
-
-                </ul>
-                <div class="card-action">
-                  <a aria-label="Visit Blog website" href="https://mukulshingwani.github.io/weather/" target="_blank" data-position="top"
-                    data-tooltip="View Online"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-external-link"></i></a>
-                  <a aria-label="Visit the GitHub repo for  project" href="https://github.com/Mukulshingwani/weather"
-                    target="_blank" data-position="top" data-tooltip="View Source"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-github"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- VQA -->
-          <div class="col s12 m6 l4">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img alt="Screenshot of  web app" src="assets\img\medical.jpg" style="height: 100%; width: 100%" class="activator" />
-              </div>
-              <div class="card-content">
-                <span class="card-title activator teal-text hoverline">Medbuddy App<i
-                    class="mdi-navigation-more-vert right"></i></span>
-                <p>
-                  A Medical assitance app for patients and doctors
-                </p>
-              </div>
-              <div class="card-reveal">
-                <!-- TODO: change this -- only close button -->
-                <!-- <span class="card-title brown-text">Accomplishments<i class="mdi-navigation-close right"></i></span> -->
-                <span class="card-title teal-text"><small>Accomplishments</small><i
-                    class="mdi-navigation-close right"></i></span>
-                <ul>
-                  <li>Tools : Flutter, Dart</li>
-                  <li>Aimed at solving the problem of long queues at OPD and clinics via slot booking</li>
-                  <li>Has a separate patient and doctors interface</li>
-                  <li>uses Firebase and Firestore</li>
-
-                </ul>
-                <div class="card-action">
-                  <a aria-label="Visit the GitHub repo for  project"
-                    href="https://github.com/Mukulshingwani/medbuddy" target="_blank"
-                    data-position="top" data-tooltip="View Source"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-github"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Video Summarizer -->
-          <div class="col s12 m6 l4">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img alt="Screenshot of  web app" src="assets\img\os.png" style="height: 100%; width: 100%" class="activator" />
-              </div>
-              <div class="card-content">
-                <span class="card-title activator teal-text hoverline">Scheduling algorithms OS<i
-                    class="mdi-navigation-more-vert right"></i></span>
-                <p>
-                  Operating systems project for comparitive analysis of various schdeuling algorithms
-                </p>
-              </div>
-              <div class="card-reveal">
-                <!-- TODO: change this -- only close button -->
-                <!-- <span class="card-title brown-text">Accomplishments<i class="mdi-navigation-close right"></i></span> -->
-                <span class="card-title brown-text"><small>Accomplishments</small><i
-                    class="mdi-navigation-close right"></i></span>
-                <ul>
-                  <li>Does comparitive analysis of algorithms like FCFS,SJF,round robin,priority, based on parameters
-                    like Avg wait time, avg TAT, Avg response time etc
-                  </li>
-                  <li>graphs for the same are made for better visualization</li>
-
-                </ul>
-                <!-- TODO: UPLOAD THIS PROJECT ON GITHUB -->
-                <div class="card-action">
-                  <a aria-label="Visit the GitHub repo for  project" href="https://github.com/Mukulshingwani/scheduling_algorithms_OS"
-                    target="_blank" data-position="top" data-tooltip="View Source"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-github"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Image Generator -->
-          <div class="col s12 m6 l4">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img alt="Screenshot of  web app" src="assets\img\srms.jpg" style="height: 100%; width: 100%" class="activator" />
-              </div>
-              <div class="card-content">
-                <span class="card-title activator teal-text hoverline">Student Management system<i
-                    class="mdi-navigation-more-vert right"></i></span>
-                <p>
-                  A simple student management system which allows students, professors and admin to perform CRUD operations
-                </p>
-              </div>
-              <div class="card-reveal">
-                <!-- TODO: change this -- only close button -->
-                <!-- <span class="card-title brown-text">Accomplishments<i class="mdi-navigation-close right"></i></span> -->
-                <span class="card-title brown-text"><small>Accomplishments</small><i
-                    class="mdi-navigation-close right"></i></span>
-                <ul>
-                  <li>Tools: Django, HTML, CSS, Javascript</li>
-                 <li>Three interfaces one each for student, professor and ADMIN</li>
-                 <li>Users will be able to manage database of students and professors along with results, attendance, leave application and much more</li>
-
-                </ul>
-                <div class="card-action">
-                  <a aria-label="Visit the GitHub repo for  project" href="https://github.com/Mukulshingwani/Student_Management_System"
-                    target="_blank" data-position="top" data-tooltip="View Source"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-github"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Head Counting System -->
-          <!-- <div class="col s12 m6 l4">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img alt="Screenshot of  web app" src="/assets/img/Blog-Images-Forget-Machine-Learning-Humans-Still-Have-a-Lot-to-Learn-Part-II.jpg" style="height: 100%; width: 100%" class="activator" />
-              </div>
-              <div class="card-content">
-                <span class="card-title activator teal-text hoverline">Signal denoising<i
-                    class="mdi-navigation-more-vert right"></i></span>
-                <p>
-                  A signal denoising project which removes noise from the given signal using convolution
-                </p>
-              </div>
-              <div class="card-reveal">
-                <span class="card-title brown-text"><small>Accomplishments</small><i
-                    class="mdi-navigation-close right"></i></span>
-                <ul>
-                  <li>Used Singular Value Decomposition for image compression; applied various image processing
-                    techniques and morphological operations to
-                    detect the number of heads.</li>
-
-                </ul>
-                <div class="card-action">
-                  <a aria-label="Visit the GitHub repo for  project"
-                    href="https://github.com/Mukulshingwani/Signal_denoising" target="_blank"
-                    data-position="top" data-tooltip="View Source"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-github"></i></a>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
-          <!-- ************* -->
+          <div class="ch-scene" aria-hidden="true"></div>
         </div>
       </div>
-    </section>
+    </div>
+    <div class="wrap"><div class="ch-notes"><svg class="spine" aria-hidden="true"></svg><ul class="notes"></ul></div></div>`;
+  chaptersEl.appendChild(sec);
+  const scene = sec.querySelector(".ch-scene");
+  const ps = PROJECTS.filter(p => p.ch === c.id);
+  scene.innerHTML = `<dl class="ch-sum"><div><dt class="mono">Entries</dt><dd class="hand">${ps.length}</dd></div><div><dt class="mono">Shipped</dt><dd class="hand">${ps.filter(p => p.status === "live").length}</dd></div><div><dt class="mono">Best result</dt><dd class="hand">${c.best}</dd></div></dl>`;
+  const ul = sec.querySelector(".notes");
+  PROJECTS.filter(p => p.ch === c.id).forEach(p => {
+    const i = noteIndex++, a = areaOf(p.area);
+    const li = document.createElement("li");
+    li.style.setProperty("--area", v(a.accent)); li.dataset.area = p.area;
+    const stamp = p.status === "wip" ? `<span class="stamp wip">In progress</span>` : p.status === "built" ? `<span class="stamp built">Built</span>` : `<span class="stamp live">Shipped</span>`;
+    const expId = `EXP-${String(i + 1).padStart(2, "0")}`, code = `${expId} / ${p.area} / ${p.when}`;
+    li.innerHTML = `
+      <button class="note" data-exp="${expId}" data-cursor="flip" aria-pressed="false" aria-label="${p.title}, ${p.when}. ${p.what} Result: ${p.out}. ${p.status === "wip" ? "In progress." : p.status === "built" ? "Built." : "Shipped."} Press to flip and read my part.">
+        <span class="tape" aria-hidden="true"></span>
+        <span class="note-inner">
+          <span class="face front" data-rough="rect" data-fill="paper" data-fs="solid" data-sw="1.4">
+            <span><span class="n-code">${code}</span><span class="n-title">${p.title}</span><span class="n-what">${p.what}</span></span>
+            <span class="n-label">Result</span><span class="n-out">${p.out}</span>
+            <span class="n-foot"><span class="flip-hint"><svg viewBox="0 0 22 18" aria-hidden="true"><path d="M3 9 C 3 3, 15 1, 18 7 M18 2 L18 8 L12 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>turn over for my part</span>${stamp}</span>
+          </span>
+          <span class="face back" data-rough="rect" data-fill="paper" data-fs="solid" data-sw="1.4">
+            <span><span class="b-h">My part</span><span class="b-p">${p.part}</span></span>
+            <span class="n-label">Result</span><span class="n-out">${p.out}</span>
+            <span class="b-tag">${code}</span>
+          </span>
+        </span>
+      </button>
+      <p class="sr" aria-live="polite"></p>`;
+    const btn = li.querySelector(".note"), live = li.querySelector("p.sr");
+    btn.addEventListener("click", () => { const on = btn.classList.toggle("flipped"); btn.setAttribute("aria-pressed", on); live.textContent = on ? `My part: ${p.part}` : ""; });
+    if (FINE && !REDUCE){
+      const rx = gsap.quickTo(btn, "rotationX", { duration: .8, ease: "power3.out" }), ry = gsap.quickTo(btn, "rotationY", { duration: .8, ease: "power3.out" });
+      gsap.set(btn, { transformPerspective: 900 });
+      btn.addEventListener("pointermove", e => { const r = btn.getBoundingClientRect(); rx(((e.clientY - r.top) / r.height - .5) * -7); ry(((e.clientX - r.left) / r.width - .5) * 9); });
+      btn.addEventListener("pointerleave", () => { rx(0); ry(0); });
+    }
+    ul.appendChild(li);
+  });
+  return sec;
+});
 
-    <!-- Fifth Section: Skills -->
-    <section id="skills" class="section scrollspy">
-      <h3 class="page-title white-text teal">Skills</h3>
-      <div class="container">
-        <!-- Languages and Databases -->
-        <div class="card">
-          <div class="card-content">
-            <h4 class="brown-text light">Languages and Databases</h4>
-            <div class="row text-center">
-              <div class="col s4 m2">
-                <img alt="" src="assets\img\c++logo.png" class="responsive-img" />C++
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/python-logo-1-300x300.jpg" class="responsive-img" />Python
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/html5-300x300.jpg" class="responsive-img" />HTML5
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/css3-300x300.jpg" class="responsive-img" />CSS
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/mysql-logo-1-300x300.jpg" class="responsive-img" />MySQL
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/shell-logo-1-300x300.jpg" class="responsive-img" />Shell Scripting
-              </div>
-            </div>
-          </div>
-        </div>
+function buildSpines(){
+  document.querySelectorAll(".ch-notes").forEach((box, k) => {
+    const svg = box.querySelector(".spine"); svg.innerHTML = "";
+    const h = svg.getBoundingClientRect().height; if (!h) return;
+    svg.setAttribute("viewBox", `0 0 40 ${h}`);
+    const pts = []; for (let y = 0; y <= h; y += 60) pts.push([20 + Math.sin(y / 140) * 7, y]);
+    svg.appendChild(cssify(rough.svg(svg).curve(pts, { stroke: v("blue"), strokeWidth: 2.5, roughness: .3, seed: 7 + k })));
+    ScrollTrigger.getById("spine" + k)?.kill();
+    if (REDUCE) return;
+    const paths = [...svg.querySelectorAll("path")]; hidePaths(paths);
+    gsap.to(paths, { strokeDashoffset: 0, ease: "none", scrollTrigger: { id: "spine" + k, trigger: box, start: "top 70%", end: "bottom 80%", scrub: 1.2 } });
+  });
+}
 
-        <div class="card">
-          <div class="card-content">
-            <h4 class="brown-text light">Libraries</h4>
-            <div class="row text-center">
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/numpy-logo-1-500x500.jpg" class="responsive-img" />NumPy
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/pandas-logo-2-500x500.jpg" class="responsive-img" />Pandas
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/opencv-logo-1-500x500.jpg" class="responsive-img" />OpenCV
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/sk-learn-logo-1-500x500.jpg" class="responsive-img" />scikit-learn
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/matplotlib-logo-1-500x500.jpg" class="responsive-img" />matplotlib
-              </div>
-            </div>
-          </div>
-        </div>
+/* Filters */
+const filters = document.getElementById("filters");
+let active = "All";
+[{ id:"All" }, ...AREAS].forEach(a => {
+  const b = document.createElement("button");
+  b.className = "chip"; b.dataset.rough = "rect"; b.dataset.sw = "1.3"; b.dataset.area = a.id;
+  if (a.id === "All"){ b.dataset.fill = "chip-on-bg"; b.dataset.fs = "solid"; }
+  b.setAttribute("aria-pressed", a.id === "All");
+  const count = a.id === "All" ? PROJECTS.length : PROJECTS.filter(p => p.area === a.id).length;
+  b.innerHTML = `<span>${a.note ? `<i class="dot" style="background:var(--${a.accent})"></i>` : ""}${a.id}<small>${count}</small></span>`;
+  b.addEventListener("click", () => { active = a.id; applyFilter(); });
+  filters.appendChild(b);
+});
+function applyFilter(){
+  filters.querySelectorAll(".chip").forEach(c => { const on = c.dataset.area === active; c.setAttribute("aria-pressed", on); if (on){ c.dataset.fill = "chip-on-bg"; c.dataset.fs = "solid"; } else delete c.dataset.fill; sketch(c); });
+  document.querySelectorAll(".notes > li").forEach(li => li.classList.toggle("hidden", active !== "All" && li.dataset.area !== active));
+  document.querySelectorAll(".ch-notes").forEach(n => n.classList.toggle("empty", !n.querySelector(".notes > li:not(.hidden)")));
+  requestAnimationFrame(() => {
+    document.querySelectorAll(".notes > li:not(.hidden) [data-rough]").forEach(el => sketch(el));
+    gsap.set(".note", { opacity: 1, y: 0, scale: 1 }); buildSpines(); ScrollTrigger.refresh();
+    const first = document.querySelector(".notes > li:not(.hidden)");
+    if (active !== "All" && first && lenis) lenis.scrollTo(first, { offset: -140, duration: 1.4 });
+  });
+}
 
-        <!-- Frameworks -->
-        <div class="card">
-          <div class="card-content">
-            <h4 class="brown-text light">Frameworks</h4>
-            <div class="row text-center">
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/django-logo.webp" class="responsive-img" />Django
-              </div>
-              <!-- <div class="col s4 m2">
-                <img alt="" src="/assets/img/flask-logo.png" class="responsive-img" />Flask
-              </div> -->
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/bootstrap.png" class="responsive-img" />Bootstrap
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/keras-logo.png" class="responsive-img" />Keras
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/tensorflow-logo-1.png" class="responsive-img" />TensorFlow
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/pytorch-logo.png" class="responsive-img" />PyTorch
-              </div>
-            </div>
-          </div>
-        </div>
+/* ================= Lift chart ================= */
+const liftSvg = document.getElementById("liftSvg");
+let chartDrawn = false;
+function buildChart(){
+  liftSvg.innerHTML = "";
+  const W = liftSvg.parentElement.clientWidth; if (!W) return;
+  const narrow = W < 560, labelW = narrow ? 0 : 250, rowH = narrow ? 62 : 46, barH = 22, top = 8, valPad = 70;
+  const H = top + LIFTS.length * rowH + 6;
+  liftSvg.setAttribute("viewBox", `0 0 ${W} ${H}`); liftSvg.setAttribute("height", H);
+  const rc = rough.svg(liftSvg), max = Math.max(...LIFTS.map(d => d.v)), plotW = W - labelW - valPad;
+  LIFTS.forEach((d, i) => {
+    const y = top + i * rowH, g = document.createElementNS(NS, "g");
+    const hit = document.createElementNS(NS, "rect");
+    hit.setAttribute("class", "hit"); hit.setAttribute("x", 0); hit.setAttribute("y", y); hit.setAttribute("width", W); hit.setAttribute("height", rowH); hit.setAttribute("fill", "transparent");
+    g.appendChild(hit);
+    let barY;
+    const exp = `EXP-${String(PROJECTS.findIndex(q => q.title === d.t) + 1).padStart(2, "0")}`;
+    if (narrow){ const t = svgText(g, 0, y + 16, `${d.m}, ${d.p} / ${exp}`, 14, "start"); t.style.fontFamily = "Geist,sans-serif"; t.style.fontWeight = 500; barY = y + 26; }
+    else {
+      const t1 = svgText(g, labelW - 14, y + rowH / 2 - 2, d.m, 16, "end"); t1.style.fontFamily = "Geist,sans-serif"; t1.style.fontWeight = 500;
+      const t2 = svgText(g, labelW - 14, y + rowH / 2 + 15, `${d.p} / ${exp}`, 13, "end", "ink-2"); t2.style.fontFamily = "IBM Plex Mono,monospace"; t2.setAttribute("font-size", 11);
+      barY = y + (rowH - barH) / 2;
+    }
+    const bw = Math.max(8, (d.v / max) * plotW);
+    g.appendChild(cssify(rc.rectangle(labelW, barY, bw, barH, { stroke: v("blue"), strokeWidth: 1.3, roughness: .4, bowing: .2, fill: v("blue"), fillStyle: "hachure", hachureAngle: -45, hachureGap: 4.5, fillWeight: 1.1, seed: 100 + i })));
+    const val = svgText(g, labelW + bw + 10, barY + barH - 3, `+${d.v}%`, 21, "start"); val.style.fontFamily = "Caveat,cursive"; val.style.fontWeight = 600; val.setAttribute("font-size", 26); val.classList.add("val");
+    g.dataset.cursor = "open"; g.style.cursor = "pointer"; g.setAttribute("tabindex", "0"); g.setAttribute("role", "link");
+    g.setAttribute("aria-label", `${d.p}, ${d.m}: plus ${d.v} percent. Open ${exp}`);
+    const openExp = () => {
+      const note = document.querySelector(`[data-exp="${exp}"]`); if (!note) return;
+      if (active !== "All"){ active = "All"; applyFilter(); }
+      if (lenis) lenis.scrollTo(note, { offset: -160, duration: 1.6 }); else note.scrollIntoView({ block: "center" });
+      setTimeout(() => { if (!note.classList.contains("flipped")) note.click(); note.focus({ preventScroll: true }); }, 1750);
+    };
+    g.addEventListener("click", openExp);
+    g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " "){ e.preventDefault(); openExp(); } });
+    liftSvg.appendChild(g);
+    if (!chartDrawn && !REDUCE){ hidePaths([...g.querySelectorAll("path")]); val.style.opacity = 0; }
+  });
+  sketch(document.querySelector(".chart-card"));
+}
+function animateChart(){
+  chartDrawn = true;
+  [...liftSvg.children].forEach((g, i) => {
+    gsap.to(g.querySelectorAll("path"), { strokeDashoffset: 0, duration: 1.1, stagger: .01, delay: i * .14, ease: "power2.out" });
+    gsap.to(g.querySelector(".val"), { opacity: 1, duration: .6, delay: i * .14 + .7 });
+  });
+}
+const tbody = document.querySelector("#liftTable tbody");
+LIFTS.forEach(d => { const tr = document.createElement("tr"); tr.innerHTML = `<td>${d.p}</td><td>${d.m}</td><td>+${d.v}%</td>`; tbody.appendChild(tr); });
+const toggle = document.getElementById("tableToggle"), table = document.getElementById("liftTable");
+toggle.addEventListener("click", () => {
+  const show = table.hidden; table.hidden = !show; liftSvg.style.display = show ? "none" : "block";
+  toggle.textContent = show ? "Show as chart" : "Show as table"; toggle.setAttribute("aria-expanded", show);
+  requestAnimationFrame(() => { sketch(document.querySelector(".chart-card")); ScrollTrigger.refresh(); });
+});
 
-        <!-- Other
-        <div class="card">
-          <div class="card-content">
-            <h4 class="brown-text light">Other</h4>
-            <div class="row text-center">
+/* ================= Scope ================= */
+const bubbles = document.getElementById("bubbles"), yearBig = document.getElementById("yearBig"), yearCap = document.getElementById("yearCap"), yearsEl = document.getElementById("years");
+CAPS.forEach(c => { const d = document.createElement("div"); d.className = "bub"; d.style.left = c.x + "%"; d.style.top = c.y + "%"; d.dataset.rough = "ellipse"; d.innerHTML = `<span><b>${c.n}</b><br><i></i></span>`; bubbles.appendChild(d); });
+YEARS.forEach((y, i) => { const b = document.createElement("button"); b.className = "yr"; b.dataset.rough = "rect"; b.dataset.sw = "1.3"; b.innerHTML = `<span>${y.y}</span>`; b.setAttribute("aria-pressed", i === 0); b.addEventListener("click", () => setYear(i, true)); yearsEl.appendChild(b); });
+let yearIdx = -1;
+function setYear(i, animate){
+  if (i === yearIdx) return; yearIdx = i;
+  yearBig.textContent = YEARS[i].y; yearCap.textContent = YEARS[i].cap;
+  yearsEl.querySelectorAll(".yr").forEach((b, j) => { b.setAttribute("aria-pressed", j === i); if (j === i){ b.dataset.fill = "chip-on-bg"; b.dataset.fs = "solid"; } else delete b.dataset.fill; sketch(b); });
+  [...bubbles.children].forEach((el, k) => {
+    const lv = CAPS[k].lv[i], d = el.dataset;
+    el.className = "bub " + lv; el.querySelector("i").textContent = LV[lv];
+    d.stroke = lv === "core" ? "blue" : (lv === "none" ? "ink-2" : "ink"); d.sw = lv === "core" ? "2.6" : "1.3";
+    if (lv === "core"){ d.fill = "n-blue"; d.fs = "solid"; } else delete d.fill;
+    if (lv === "none") d.dash = "1"; else delete d.dash;
+    sketch(el, { animate: animate && lv !== "none", fresh: true, dur: .6 });
+  });
+  if (!REDUCE && animate) gsap.fromTo(yearBig, { y: 14, opacity: 0, rotate: -4 }, { y: 0, opacity: 1, rotate: 0, duration: .5, ease: "back.out(2)" });
+}
 
+/* ================= Toolbox ================= */
+const track = document.getElementById("track"), fills = ["n-yellow","n-blue","n-green","n-pink","n-violet","n-orange"];
+[...TOOLS, ...TOOLS].forEach((t, i) => {
+  const s = document.createElement("span"); s.className = "pill" + (i >= TOOLS.length ? " dup" : "");
+  s.dataset.rough = "rect"; s.dataset.sw = "1.3"; s.dataset.fill = fills[(i % TOOLS.length) % fills.length]; s.dataset.fs = "solid";
+  if (i >= TOOLS.length) s.setAttribute("aria-hidden", "true");
+  s.innerHTML = `<span>${t}</span>`; track.appendChild(s);
+});
 
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/git.png" class="responsive-img" />Git
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/aws.png" class="responsive-img" />AWS
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/heroku.png" class="responsive-img" />Heroku
-              </div>
-            </div>
-          </div>
-        </div> -->
+/* ================= Contact ================= */
+const planePathSvg = document.getElementById("planePath"), plane = document.getElementById("plane");
+function buildPlane(){
+  if (!plane) return;
+  const sec = document.getElementById("hello"), W = sec.offsetWidth, H = sec.offsetHeight;
+  const d = `M ${W * .02} ${H * .9} C ${W * .2} ${H * .99}, ${W * .38} ${H * .97}, ${W * .56} ${H * .94} S ${W * .74} ${H * .99}, ${W * .82} ${H * .6} S ${W * .88} ${H * .1}, ${W * .97} ${H * .14}`;
+  planePathSvg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  planePathSvg.innerHTML = `<path d="${d}" fill="none" style="stroke:var(--ink-2)" stroke-width="2" stroke-dasharray="6 9" stroke-linecap="round" opacity=".5"/>`;
+  plane.style.offsetPath = `path("${d}")`;
+}
 
-        <!-- certifications -->
-        <!-- <div class="card">
-          <div class="card-content">
-            <h4 class="brown-text light">Certificates</h4>
-            <div class="row text-left">
-              <div class="container">
-                <div class="row">
-                  <div class="col s12 m6 l6">
-                    <div class="card">
-                      <div class="card-image">
-                        <img src="/assets/img/mooc-machine-learning-coursera-800x500.jpg">
-                      </div>
-                      <div class="card-content">
-                        <span class="card-title teal-text">Machine Learning (Stanford)</span>
-                      </div>
-                    </div>
-                  </div>
+/* ================= Rail ================= */
+const RAIL = [ ["top","Start"], ["loop","The loop"], ["ch-assoc","2024"], ["ch-ds1","2025"], ["ch-senior","2026"], ["impact","Impact"], ["scope","Scope"], ["hello","Say hi"] ];
+const railSvg = document.getElementById("railSvg"), railMarks = document.getElementById("railMarks");
+let railProg = null, railFracs = [];
+const railST = {};
+RAIL.forEach(([id, label]) => {
+  const li = document.createElement("li");
+  li.innerHTML = `<button class="mark" tabindex="-1" aria-label="Go to ${label}"><i></i><span>${label}</span></button>`;
+  li.querySelector("button").addEventListener("click", () => go("#" + id));
+  railMarks.appendChild(li);
+});
+function maxScroll(){ return Math.max(1, document.documentElement.scrollHeight - innerHeight); }
+function buildRail(){
+  const H = railSvg.getBoundingClientRect().height; if (!H) return;
+  railSvg.setAttribute("viewBox", `0 0 44 ${H}`); railSvg.innerHTML = "";
+  const rc = rough.svg(railSvg), pts = [[22, 0], [20, H * .33], [24, H * .66], [22, H]];
+  railSvg.appendChild(cssify(rc.curve(pts, { stroke: v("grid2"), strokeWidth: 2.5, roughness: .3, seed: 90 })));
+  const prog = cssify(rc.curve(pts, { stroke: v("blue"), strokeWidth: 2.5, roughness: .3, seed: 90 }));
+  railSvg.appendChild(prog);
+  railProg = [...prog.querySelectorAll("path")].map(p => ({ p, L: p.getTotalLength() + 2 }));
+  railProg.forEach(({ p, L }) => { p.style.strokeDasharray = L; });
+  const max = (window.ScrollTrigger && ScrollTrigger.maxScroll(window)) || maxScroll();
+  railFracs = RAIL.map(([id]) => id === "top" ? 0 : Math.min(1, Math.max(0, (railST[id] ? railST[id].start : document.getElementById(id).getBoundingClientRect().top + scrollY) / max)));
+  let prev = -99;
+  [...railMarks.querySelectorAll(".mark")].forEach((m, k) => { const y = Math.max(railFracs[k] * H, prev + 28); prev = y; m.style.top = y + "px"; });
+  updateRail(scrollY / max);
+}
+function updateRail(p){
+  if (!railProg) return;
+  railProg.forEach(({ p: path, L }) => { path.style.strokeDashoffset = L * (1 - p); });
+  let cur = 0; railFracs.forEach((f, k) => { if (p + .002 >= f) cur = k; });
+  railMarks.querySelectorAll(".mark").forEach((m, k) => m.classList.toggle("on", k === cur));
+}
 
-                  <div class="col s12 m6 l6">
-                    <div class="card">
-                      <div class="card-image">
-                        <img src="/assets/img/mooc-algorithms-stanford-2-800x500.jpg">
-                      </div>
-                      <div class="card-content">
-                        <span class="card-title teal-text">Algorithms (Stanford)</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
+/* ================= Smooth scroll ================= */
+let lenis = null;
+if (!REDUCE && window.Lenis){
+  lenis = new Lenis({ duration: 1.1, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true, wheelMultiplier: .9 });
+  lenis.on("scroll", ScrollTrigger.update);
+  gsap.ticker.add(t => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+}
+function go(sel){
+  const el = document.querySelector(sel); if (!el) return;
+  if (lenis) lenis.scrollTo(el, { duration: 2.2 });
+  else el.scrollIntoView();
+}
+document.querySelectorAll("[data-go]").forEach(a => a.addEventListener("click", e => { e.preventDefault(); go(a.getAttribute("href")); }));
 
-      </div>
-    </section>
+/* ================= Cursor + trail ================= */
+const ring = document.querySelector(".cur-ring"), dot = document.querySelector(".cur-dot"), curLabel = document.getElementById("curLabel");
+const cursorOn = FINE && !REDUCE && innerWidth >= 760;
+if (cursorOn){
+  document.documentElement.classList.add("cursor-on");
+  const rxq = gsap.quickTo(ring, "x", { duration: .6, ease: "power3" }), ryq = gsap.quickTo(ring, "y", { duration: .6, ease: "power3" });
+  const dxq = gsap.quickTo(dot, "x", { duration: .12 }), dyq = gsap.quickTo(dot, "y", { duration: .12 });
+  addEventListener("pointermove", e => { document.documentElement.classList.add("cursor-live"); rxq(e.clientX); ryq(e.clientY); dxq(e.clientX); dyq(e.clientY); }, { passive: true });
+  document.addEventListener("pointerover", e => {
+    const t = e.target.closest("a,button,.note,[data-cursor]");
+    if (t){ const label = t.dataset.cursor || ""; curLabel.textContent = label; ring.classList.toggle("big", !!label); gsap.to(ring, { scale: label ? 1.25 : .85, duration: .45, ease: "power3.out" }); }
+    else { ring.classList.remove("big"); gsap.to(ring, { scale: .5, duration: .45, ease: "power3.out" }); }
+  });
+  document.addEventListener("pointerdown", () => gsap.fromTo(dot, { scale: 2.2 }, { scale: 1, duration: .35 }));
+}
+const penBtn = document.getElementById("penBtn"), canvas = document.getElementById("trail"), ctx = canvas.getContext("2d");
+let penOn = cursorOn && store.get("pen") === "on";
+penBtn.setAttribute("aria-pressed", penOn);
+if (!cursorOn){ penBtn.hidden = true; document.getElementById("penSep").hidden = true; }
+const pts = []; let penColor = "#1971C2";
+function sizeCanvas(){ const dpr = devicePixelRatio || 1; canvas.width = innerWidth * dpr; canvas.height = innerHeight * dpr; canvas.style.width = innerWidth + "px"; canvas.style.height = innerHeight + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
+addEventListener("pointermove", e => { if (penOn && e.pointerType === "mouse") pts.push({ x: e.clientX, y: e.clientY, t: performance.now() }); }, { passive: true });
+penBtn.addEventListener("click", () => { penOn = !penOn; penBtn.setAttribute("aria-pressed", penOn); store.set("pen", penOn ? "on" : "off"); pts.length = 0; ctx.clearRect(0, 0, innerWidth, innerHeight); });
+function tickTrail(){
+  if (!penOn) return;
+  const now = performance.now(), life = 600;
+  while (pts.length && now - pts[0].t > life) pts.shift();
+  ctx.clearRect(0, 0, innerWidth, innerHeight); ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.strokeStyle = penColor;
+  for (let i = 1; i < pts.length; i++){ const a = pts[i - 1], b = pts[i], k = 1 - (now - b.t) / life; ctx.globalAlpha = Math.max(0, k) * .8; ctx.lineWidth = 1 + k * 3; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+  ctx.globalAlpha = 1;
+}
 
-    <!-- Seventh Section: Education -->
-    <section id="education" class="section scrollspy">
-      <h3 class="page-title white-text teal">Education</h3>
-      <div class="container">
-        <div class="row">
-          <!-- Education -->
-          <div class="col s12 m6 l6">
-            <div class="card">
-              <div class="card-content">
-                <p>
-                  <span class="card-title"><a href="https://www.iitj.ac.in/" target="_blank" class="teal-text hoverline">Indian Institute of Technology, Jodhpur</a></span>
-                </p>
-                <p class="brown-text">Rajasthan, India</p>
-                <p>
-                  <b>Degree: </b> B.Tech in Artificial Intelligence and Data Science    
-                  <br>
-                  <b>CGPA: </b> 8.87
-                </p>
+/* Magnetic buttons */
+if (cursorOn) document.querySelectorAll("[data-mag]").forEach(el => {
+  const xq = gsap.quickTo(el, "x", { duration: .8, ease: "elastic.out(1,.5)" }), yq = gsap.quickTo(el, "y", { duration: .8, ease: "elastic.out(1,.5)" });
+  el.addEventListener("pointerenter", () => sketch(el, { fresh: true }));
+  el.addEventListener("pointermove", e => { const r = el.getBoundingClientRect(); xq((e.clientX - r.left - r.width / 2) * .3); yq((e.clientY - r.top - r.height / 2) * .4); });
+  el.addEventListener("pointerleave", () => { xq(0); yq(0); });
+});
 
-                <ul>
-                  <p>
-                    <b>Relevant Courseworks:</b>
-                  <ul>
-                    <li>Pattern Recognition and Machine Learning
-                      <ul>
-                        <li>Secured 2nd rank out of 250 students (A grade)</li>
-                      </ul>
-                    </li>
-                    <li>Data Structures and Algorithms
-                    <ul>
-                      <li>Secured 3rd rank out of 250 students (A grade)</li>
-                    </ul>
-                    </li>
-                    
-                    <li>Operating systems</li>
-                    <li>Probability, statistics and stochastic processes</li>                 
-                  </ul>
-                  </p>
+/* Marquee driven by scroll velocity */
+let mx = 0;
+function tickMarquee(){
+  if (REDUCE) return;
+  const half = track.scrollWidth / 2; if (!half) return;
+  const vel = lenis ? Math.abs(lenis.velocity) : 0;
+  mx -= .45 + Math.min(10, vel) * .55;
+  if (mx <= -half) mx += half;
+  track.style.transform = `translate3d(${mx}px,0,0)`;
+}
 
-                </ul>
-              </div>
-            </div>
+/* Mouse parallax for hero and chapter scenes */
+let mouseX = 0, mouseY = 0;
+if (cursorOn) addEventListener("pointermove", e => { mouseX = e.clientX / innerWidth - .5; mouseY = e.clientY / innerHeight - .5; }, { passive: true });
+const floatX = heroFloats.map(h => gsap.quickTo(h.el.firstChild, "x", { duration: 1.4, ease: "power3.out" }));
+const floatY = heroFloats.map(h => gsap.quickTo(h.el.firstChild, "y", { duration: 1.4, ease: "power3.out" }));
+const sceneMovers = [...document.querySelectorAll(".ch-scene .float")].map(el => ({ d: +el.dataset.depth, x: gsap.quickTo(el.firstChild, "x", { duration: 1.6, ease: "power3.out" }), y: gsap.quickTo(el.firstChild, "y", { duration: 1.6, ease: "power3.out" }) }));
+let lastMX = 99, lastMY = 99;
+function tickParallax(){
+  if (!cursorOn || (mouseX === lastMX && mouseY === lastMY)) return;
+  lastMX = mouseX; lastMY = mouseY;
+  heroFloats.forEach((h, k) => { floatX[k](mouseX * 60 * h.d); floatY[k](mouseY * 46 * h.d); });
+  sceneMovers.forEach(s => { s.x(mouseX * 40 * s.d); s.y(mouseY * 30 * s.d); });
+}
+gsap.ticker.add(() => { tickTrail(); tickMarquee(); tickParallax(); });
 
-            
-          </div>
-          <div class="col s12 m6 l6">
-            <div class="card">
-              <div class="card-content">
-                <p>
-                  <span class="card-title"><a href="http://www.dpsdwarka.com/dpsdwarka/" target="_blank" class="teal-text hoverline">Delhi Public School, Dwarka</a></span>
-                </p>
-                <p class="brown-text">Delhi, India</p>
-                <p>
-                  <b>Degree: </b> Higher secondary school
-                  <br>
-                  <b>Percentage: </b> 94.25
-                </p>
+/* ================= Themes ================= */
+function setTheme(name){
+  document.documentElement.dataset.theme = name;
+  document.querySelectorAll("[data-theme-btn]").forEach(b => b.setAttribute("aria-pressed", b.dataset.themeBtn === name));
+  store.set("theme", name);
+  requestAnimationFrame(() => { penColor = tok("blue"); });
+}
+document.querySelectorAll("[data-theme-btn]").forEach(b => b.addEventListener("click", () => setTheme(b.dataset.themeBtn)));
+const saved = store.get("theme");
+setTheme(["whiteboard","blueprint","midnight"].includes(saved) ? saved : "whiteboard");
 
-                <ul>
-                  <p>
-                    <b>Relevant Courseworks:</b>
-                  <ul>
-                    <li>Physics</li>
-                    <li>Chemistry</li>
-                    <li>Mathematics</li>
-                    <li>Computer Science</li>
-                  </ul>
-                  </p>
+/* ================= Motion ================= */
+function lineReveal(scope, opts = {}){
+  return gsap.from(scope.querySelectorAll(".ln > span"), { yPercent: 110, duration: 1.3, stagger: .1, ease: "power4.out", ...opts });
+}
+function buildMotion(){
+  // Hero entrance: layers settle in, the name writes itself
+  const name = document.querySelector(".name-svg text");
+  gsap.timeline({ delay: .2 })
+    .to(name, { strokeDashoffset: 0, duration: 2.4, ease: "power2.inOut" }, .2)
+    .to(name, { fillOpacity: 1, duration: .9 }, 1.9)
+    .to(name, { strokeWidth: 0, duration: .6 }, 2.3)
+    .from(".tp-head, .f-label", { opacity: 0, duration: .8, stagger: .05 }, 0)
+    .from(".f-val, .hero-lede", { clipPath: "inset(0 100% 0 0)", duration: .9, stagger: .22, ease: "power2.inOut" }, 1.7)
+    .from(".hero-proof", { opacity: 0, x: -14, duration: .8, ease: "power3.out" }, 2.9)
+    .from(".stamp-big", { scale: 1.9, opacity: 0, rotate: -24, duration: .45, ease: "back.out(2.2)" }, 3.2)
+    .from(".cue-in", { opacity: 0, duration: 1 }, 3.4);
 
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  // Hero exit: a slow camera push through the layers
+  gsap.timeline({ scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: .8, pin: true, pinSpacing: false } })
+    .to("#heroFront", { yPercent: -18, scale: .94, opacity: 0, ease: "power2.in" }, 0)
+    .to("#layerBack", { scale: 1.25, opacity: .3, ease: "none" }, 0)
+    .fromTo(".hero-cue", { opacity: 1 }, { opacity: 0, ease: "none", immediateRender: false }, 0);
 
-    <!-- Eight Section: Contact -->
-    <section id="contact" class="section scrollspy full-height">
-      <h3 class="page-title white-text teal">Contact</h3>
-      <div class="container">
-        <p>
-          <a aria-label="Call Mukul" data-position="top" data-tooltip="Call Mukul"
-            class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i class="fa fa-phone"></i><a
-              aria-label="Call Mukul">+91 8285823608</a></a>
-        </p>
-        <p>
-          <a aria-label="Email Mukul" href="mailto:shingwani.1@iitj.ac.in" target="_blank" data-position="top"
-            data-tooltip="Email Mukul" class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-              class="fa fa-envelope"></i><a aria-label="Email Mukul" href="mailto:shingwani.1@iitj.ac.in"
-              class="hoverline">shingwani.1@iitj.ac.in</a></a>
-        </p>
-        <p>
-          <a aria-label="View Mukul on GitHub" href="http://github.com/Mukulshingwani" target="_blank"
-            data-position="top" data-tooltip="View Mukul on GitHub"
-            class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i class="fa fa-github"></i><a
-              aria-label="Mukul on Github" href="http://github.com/Mukulshingwani" class="hoverline"
-              target="_blank">github.com/Mukulshingwani</a></a>
-        </p>
-        <p>
-          <a aria-label="View Mukul on LinkedIn" href="https://www.linkedin.com/in/mukul-shingwani-536432204/" target="_blank"
-            data-position="top" data-tooltip="View Mukul on LinkedIn"
-            class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-              class="fa fa-linkedin"></i><a aria-label="Mukul on LinkedIn" href="https://www.linkedin.com/in/mukul-shingwani-536432204/"
-              class="hoverline" target="_blank">https://www.linkedin.com/in/mukul-shingwani</a></a>
-        </p>
-      </div>
-    </section>
-  </main>
+  // The loop draws itself with the scroll
+  lineReveal(document.querySelector(".loop-copy"), { scrollTrigger: { trigger: "#loopStage", start: "top 75%" } });
+  gsap.from(".loop-copy .fade", { opacity: 0, y: 24, stagger: .15, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: "#loopStage", start: "top 55%" } });
+  const loopTl = gsap.timeline({ scrollTrigger: { trigger: "#loopStage", start: "top top", end: DESK() ? "+=140%" : "+=110%", scrub: .6, pin: true } });
+  loopParts.forEach(({ g, kind }, k) => {
+    const paths = [...g.querySelectorAll("path")];
+    const fills = paths.filter(p => p.style.fill && p.style.fill !== "none");
+    const strokes = paths.filter(p => !fills.includes(p));
+    hidePaths(strokes); if (fills.length) gsap.set(fills, { opacity: 0 });
+    const texts = g.querySelectorAll("text"); if (texts.length) gsap.set(texts, { opacity: 0 });
+    const at = .1 + k * .32;
+    if (strokes.length) loopTl.to(strokes, { strokeDashoffset: 0, duration: kind === "box" ? .45 : .32, stagger: .02, ease: "none" }, at);
+    if (fills.length) loopTl.to(fills, { opacity: 1, duration: .2 }, at + .3);
+    if (texts.length) loopTl.to(texts, { opacity: 1, duration: .25, stagger: .06 }, at + .3);
+  });
+  loopTl.to({}, { duration: .4 });
 
-  <!-- typed.js -->
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script type="text/javascript">
-    var typed = new Typed('.typing',{
-      strings: ["Coder", "ML enthusiast", "Fast Learner"],
-      loop: true,
-      typeSpeed: 80,
-      backSpeed: 40
+  // Journey heading
+  lineReveal(document.getElementById("journey"), { scrollTrigger: { trigger: "#journey", start: "top 78%" } });
+  gsap.from("#filters .chip", { opacity: 0, y: 16, stagger: .05, duration: .8, ease: "power3.out", scrollTrigger: { trigger: "#filters", start: "top 88%" } });
+
+  // Chapters: a sticky note grows into the whole screen
+  chapterEls.forEach(sec => {
+    const card = sec.querySelector(".ch-card"), frame = sec.querySelector(".ch-frame");
+    const floats = [...sec.querySelectorAll(".ch-scene .float")];
+    const framePaths = [...frame.querySelectorAll("svg.rl path")]; hidePaths(framePaths);
+    const startClip = DESK() ? "inset(31% 36% 31% 36% round 18px)" : "inset(34% 18% 34% 18% round 16px)";
+    const tl = gsap.timeline({ scrollTrigger: { trigger: sec.querySelector(".ch-stage"), start: "top top", end: DESK() ? "+=130%" : "+=110%", scrub: .6, pin: true } });
+    tl.fromTo(card, { clipPath: startClip, rotate: -5 }, { clipPath: "inset(0% 0% 0% 0% round 0px)", rotate: 0, duration: 1, ease: "power2.inOut" }, 0)
+      .from(sec.querySelectorAll(".ch-sum div"), { opacity: 0, x: 24, stagger: .08, duration: .4 }, .7)
+      .to(framePaths, { strokeDashoffset: 0, duration: .6, stagger: .02, ease: "none" }, .55)
+      .from(sec.querySelectorAll(".ch-text .ln > span"), { yPercent: 115, duration: .5, stagger: .07, ease: "power3.out" }, .6)
+      .to({}, { duration: .25 })
+      .to(card, { clipPath: "inset(3% 3% 3% 3% round 18px)", duration: .35, ease: "power2.inOut" });
+    sec.querySelectorAll(".notes > li").forEach((li, k) => {
+      gsap.from(li.querySelector(".note"), { y: 60, opacity: 0, duration: 1.3, ease: "power3.out", scrollTrigger: { trigger: li, start: "top 92%" } });
     });
-  </script>
+    if (DESK()){
+      const lis = [...sec.querySelectorAll(".notes > li")], ul = sec.querySelector(".notes");
+      gsap.fromTo(lis.filter((_, k) => k % 2), { y: 90 }, { y: -90, ease: "none", scrollTrigger: { trigger: ul, start: "top bottom", end: "bottom top", scrub: 1 } });
+      gsap.fromTo(lis.filter((_, k) => !(k % 2)), { y: -20 }, { y: 20, ease: "none", scrollTrigger: { trigger: ul, start: "top bottom", end: "bottom top", scrub: 1 } });
+    }
+  });
 
+  // Impact
+  lineReveal(document.querySelector("#impact .sec-head"), { scrollTrigger: { trigger: "#impact", start: "top 75%" } });
+  gsap.utils.toArray("#impact .fade").forEach(el => gsap.from(el, { opacity: 0, y: 40, duration: 1.4, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 88%" } }));
+  ScrollTrigger.create({ trigger: "#liftSvg", start: "top 78%", once: true, onEnter: animateChart });
 
-  <!-- jQuery-->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  // Scope: pinned, scroll moves through the years
+  lineReveal(document.querySelector("#scope .sec-head"), { scrollTrigger: { trigger: "#scope", start: "top 75%" } });
+  gsap.from("#scope .sec-head .fade", { opacity: 0, y: 24, duration: 1.2, scrollTrigger: { trigger: "#scope", start: "top 70%" } });
+  if (DESK()){
+    ScrollTrigger.create({ trigger: "#scopeStage", start: "top top", end: "+=1100", pin: true, onUpdate: self => setYear(Math.min(2, Math.floor(self.progress * 2.999)), true) });
+  } else {
+    [1, 2].forEach(i => ScrollTrigger.create({ trigger: "#bubbles", start: `top ${62 - i * 16}%`, onEnter: () => setYear(i, true), onLeaveBack: () => setYear(i - 1, true) }));
+  }
 
-  <!-- Materialize - Compiled and minified JavaScript-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
-  <script>
-    // Materialize - Initializers
-    $(document).ready(function () {
-      $(".scrollspy").scrollSpy()
-      // Initialize collapse button
-      $(".button-collapse").sideNav({
-        menuWidth: 190, // Default is 240
-        edge: "left", // Choose the horizontal origin
-        closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
-      })
-    })
-  </script>
+  // Toolbox + contact
+  lineReveal(document.querySelector("#toolbox .sec-head"), { scrollTrigger: { trigger: "#toolbox", start: "top 78%" } });
+  lineReveal(document.getElementById("hello"), { duration: 1.6, stagger: .14, scrollTrigger: { trigger: "#hello", start: "top 70%" } });
+  gsap.from("#hello .rbtn", { opacity: 0, y: 30, stagger: .12, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: "#hello .actions", start: "top 92%" } });
+  if (plane) gsap.fromTo(plane, { offsetDistance: "0%" }, { offsetDistance: "100%", ease: "none", scrollTrigger: { trigger: "#hello", start: "top 85%", end: "bottom bottom", scrub: 1.5 } });
+
+  // Rail
+  RAIL.forEach(([id]) => { if (id !== "top") railST[id] = ScrollTrigger.create({ trigger: "#" + id, start: "top 45%" }); });
+  ScrollTrigger.create({ start: 0, end: "max", onUpdate: self => updateRail(self.progress) });
+  ScrollTrigger.addEventListener("refresh", buildRail);
+}
+
+/* ================= Init ================= */
+document.fonts.ready.then(() => {
+  penColor = tok("blue");
+  sketchAll();
+  buildChart();
+  setYear(0, false);
+  buildPlane();
+  sizeCanvas();
+  if (REDUCE){
+    setYear(2, false); if (plane) plane.style.offsetDistance = "100%";
+    document.querySelectorAll(".ch-card").forEach(c => c.style.clipPath = "none");
+    buildSpines(); buildRail();
+    addEventListener("scroll", () => updateRail(scrollY / maxScroll()), { passive: true });
+    return;
+  }
+  buildMotion();
+  buildSpines();
+  ScrollTrigger.refresh();
+});
+
+let rT, lastW = innerWidth;
+addEventListener("resize", () => {
+  clearTimeout(rT);
+  rT = setTimeout(() => {
+    sizeCanvas();
+    if (Math.abs(innerWidth - lastW) < 2) return;
+    lastW = innerWidth;
+    sketchAll(); buildChart(); buildPlane(); buildSpines(); ScrollTrigger.refresh();
+  }, 250);
+});
+})();
+</script>
 </body>
-
 </html>
